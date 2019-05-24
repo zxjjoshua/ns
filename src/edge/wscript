@@ -1,0 +1,42 @@
+# -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+# def options(opt):
+#     pass
+
+# def configure(conf):
+#     conf.check_nonfatal(header_name='stdint.h', define_name='HAVE_STDINT_H')
+
+def build(bld):
+    module = bld.create_ns3_module('edge', ['core'])
+    module.source = [
+        'model/edge.cc',
+        'helper/edge-helper.cc',
+	'model/DataBase.cc',
+        'model/MessageClassifier.cc',
+        'model/CarInfo.cc',
+        'model/Encourage.cc',
+        'model/RoadInfo.cc',
+        ]
+
+    module_test = bld.create_ns3_module_test_library('edge')
+    module_test.source = [
+        'test/edge-test-suite.cc',
+        ]
+
+    headers = bld(features='ns3header')
+    headers.module = 'edge'
+    headers.source = [
+        'model/edge.h',
+        'helper/edge-helper.h',
+	'model/DataBase.h',
+        'model/MessageClassifier.h',
+        'model/CarInfo.h',
+        'model/Encourage.h',
+        'model/RoadInfo.h',
+        ]
+
+    if bld.env.ENABLE_EXAMPLES:
+        bld.recurse('examples')
+
+    # bld.ns3_python_bindings()
+

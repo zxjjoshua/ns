@@ -1,0 +1,72 @@
+#include "MessageClassifier.h"
+#include <string.h>
+
+#include "CarInfo.h"
+#include "RoadInfo.h"
+#include "Encourage.h"
+
+
+
+#define MODULE "MessageClassifier"
+
+using namespace std;
+
+void MessageClassifier::Router(char *message, Adreess from){
+    //classify via classify table:
+    //carinfo
+    //roadinfo
+    //encourage
+    //entertainment
+    //message format:
+    //MT1bit BT1bit
+    char MT;
+    memcpy( &MT, message, 1);
+
+    std::cout<<"this is MT "<<(int)(MT)<<std::endl;
+    if(int(MT)<0){
+        int BT=int(message[0]&0x7f);//第一位归零
+        std::cout<<"this is BT "<<BT<<std::endl;
+        switch (BT) {
+        case 1://车辆信息 1
+            CarInfo::CarInfoProcess(from, message);
+            break;
+        case 2://基础设施上传道路信息 2
+            RoadInfo::RoadInfoProceess(message);
+        case 3://激励记录信息上传 3
+            Encourage::EncourageDocument(from,message);
+            //激励验证信息上传 4
+            //车辆的道路请求信息 6
+            //车载娱乐 7
+            //云端道路信息表同步 8
+            //道路拥堵警报 11
+            //激励记录成功返回信息 12
+            //激励验证成功返回信息 13
+
+        default:
+            break;
+        }
+
+    }
+    else{
+        //Communication::Send_To(message,ip,port);
+    }
+}
+
+vector<string> MessageClassifier::ip2int(char *ip)
+{
+    //const char* convert to char*
+    char * strc = new char[strlen(ip)+1];
+    strcpy(strc, ip);
+    vector<string> resultVec;
+    char* tmpStr = strtok(strc,".");
+    while (tmpStr != NULL)
+    {
+        resultVec.push_back(string(tmpStr));
+        tmpStr = strtok(NULL, ".");
+    }
+    delete[] strc;
+
+    return resultVec;
+}
+
+

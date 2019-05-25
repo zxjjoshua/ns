@@ -108,14 +108,14 @@ bool CarInfo::CarInfoSave(car_info *car){
 
 
 
-    if(!(db->SetKey(key,value)))
-    {
-        return false;
-    }
-
-   if(!(db->ExpireKey(key,EXPIRE_TIME))){
-        return false;
-    }
+   //  if(!(db->SetKey(key,value)))
+   //  {
+   //      return false;
+   //  }
+   //
+   // if(!(db->ExpireKey(key,EXPIRE_TIME))){
+   //      return false;
+   //  }
 
    return true;
 
@@ -129,8 +129,8 @@ car_info* CarInfo::CarInfoGet(uint8_t *car_id)
 
 
 //通过定义的云端ip，端口，直接从数据库将包取出，发送到云端
-bool CarInfo::CarInfoUpload(uint8_tr* car_id){
-    char carid[8];
+bool CarInfo::CarInfoUpload(uint8_t* car_id){
+    uint8_t carid[8];
     sprintf(carid, "%d",car_id);
     uint8_t* key=strcat(table_name,carid);
 

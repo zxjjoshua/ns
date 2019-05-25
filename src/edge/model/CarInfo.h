@@ -11,7 +11,7 @@
 
 namespace ns3{
 typedef struct car_info{
-    char car_id;
+    uint8_t car_id;
     unsigned short int car_speed;
     float position_x;
     float position_y;
@@ -28,7 +28,6 @@ public:
     static void CarInfoProcess(Address ip, uint8_t* message);
 
 //    void set_key();
-private:
     static car_info* CarInfoParse(uint8_t* message);
     static bool CarInfoSave(car_info *car);
     static bool CarInfoUpload(uint8_t* car_id);

@@ -484,7 +484,7 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
         }
       socket->GetSockName (localAddress);
       NS_LOG_INFO("get packet from "<<from.m_data<<"!!!!");
-      std::cout <<"get packet from "<<from.m_data<<"!!!!")<<std::endl;
+      std::cout <<"get packet from "<<from.m_data<<"!!!!"<<std::endl;
       m_rxTrace (packet);
       m_rxTraceWithAddresses (packet, from, localAddress);
     }

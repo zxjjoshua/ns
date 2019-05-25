@@ -3,7 +3,7 @@
 #include "CarInfo.h"
 #include "RoadInfo.h"
 #include "Encourage.h"
-
+#include "ns3/internet-module.h"
 
 
 #define MODULE "MessageClassifier"

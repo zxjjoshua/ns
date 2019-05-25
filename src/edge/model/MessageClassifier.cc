@@ -62,7 +62,7 @@ std::vector<std::string> MessageClassifier::ip2int(char *ip)
     //const char* convert to char*
     char * strc = new char[strlen(ip)+1];
     strcpy(strc, ip);
-    vector<string> resultVec;
+    std::vector<std::string> resultVec;
     char* tmpStr = strtok(strc,".");
     while (tmpStr != NULL)
     {

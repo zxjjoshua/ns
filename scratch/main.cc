@@ -25,7 +25,7 @@
 //                      LAN 10.1.2.0
 //
 // - UDP flows from n0 to n1 and back
-// - DropTail queues 
+// - DropTail queues
 // - Tracing of queues and packet receptions to file "udp-echo.tr"
 
 #include <fstream>
@@ -42,7 +42,33 @@ using namespace ns3;
 
 NS_LOG_COMPONENT_DEFINE ("UdpEchoExample");
 
-int 
+
+void SetCarInfo(char* str, uint8_t car_id, short int speed, float p_x,
+  float p_y)
+  {
+    int len=0;
+    char MT_BT=128+1;
+    int ML=672;
+    // char car_id=33;
+    // short int speed=99;
+    // float position_x=233.234;
+    // float position_y=32.2216;
+    memcpy(&str1[len],&MT_BT,1);
+    len++;
+    memcpy(&str1[len],&ML,4);
+    len+=4;
+    memcpy(&str1[len],&car_id,1);
+    len+=1;
+    memcpy(&str1[len],&speed,2);
+    len+=2;
+    memcpy(&str1[len],&p_x,4);
+    len+=4;
+    memcpy(&str1[len],&p_y,4);
+    len+=4;
+}
+
+
+int
 main (int argc, char *argv[])
 {
 //
@@ -58,7 +84,7 @@ main (int argc, char *argv[])
 // Allow the user to override any of the defaults and the above Bind() at
 // run-time, via command-line arguments
 //
-  
+
 //  redisContext* c = redisConnect("127.0.0.1", 6379);
   bool useV6 = false;
   Address serverAddress_1;
@@ -139,7 +165,49 @@ main (int argc, char *argv[])
   csmaInterfaces = address.Assign (csmaDevices);
   serverAddress_2 = Address(csmaInterfaces.GetAddress (0));
 
+//////////////////////////////////////////////////////
+//create multiple meessages to send
+char str1[100];
+char str2[100];
+char str3[100];
+char str4[100];
 
+
+int len=0;
+char MT_BT=128+1;
+int ML=672;
+char car_id=33;
+short int speed=99;
+float position_x=233.234;
+float position_y=32.2216;
+memcpy(&str1[len],&MT_BT,1);
+len++;
+memcpy(&str1[len],&ML,4);
+len+=4;
+memcpy(&str1[len],&e,1);
+len+=1;
+memcpy(&str1[len],&speed,2);
+len+=2;
+memcpy(&str1[len],&position_x,4);
+len+=4;
+memcpy(&str1[len],&position_y,4);
+len+=4;
+
+SetCarInfo(str1, 1, 30, 23.23, 43.232);
+SetCarInfo(str2, 2, 40, 233.23, 3.232);
+SetCarInfo(str3, 3, 40, 43.2, 34.232);
+SetCarInfo(str4, 4, 30, 11.53, 23.232);
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////
 
   NS_LOG_INFO ("Create Applications.");
 //
@@ -168,7 +236,7 @@ main (int argc, char *argv[])
   ApplicationContainer clientApps = client.Install (csmaNodes.Get(1));
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
-  client.SetFill (clientApps.Get (0), "i'm n1");
+  client.SetFill (clientApps.Get (0), str1);
   //client.SetName(clientApps.Get(0),"n1");
 
 //////////////////////////////////////////////////
@@ -184,7 +252,7 @@ main (int argc, char *argv[])
   clientApps = client2.Install (csmaNodes.Get (2));
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
-  client2.SetFill (clientApps.Get (0), "i'm n2");
+  client2.SetFill (clientApps.Get (0), str2);
   //client2.SetName(clientApps.Get(0),"n2");
 
 ///////////////////////////////////////////////////
@@ -198,7 +266,7 @@ main (int argc, char *argv[])
   clientApps = client3.Install (csmaNodes.Get (3));
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
-  client3.SetFill (clientApps.Get (0), "i'm n3");
+  client3.SetFill (clientApps.Get (0), str3);
   //client3.SetName(clientApps.Get(0),"n3");
 
 //////////////////////////////////////////////////
@@ -227,11 +295,10 @@ main (int argc, char *argv[])
 //
 // Now, do the actual simulation.
 //
-  
+
   NS_LOG_INFO ("Run Simulation.");
   Simulator::Run ();
   Simulator::Destroy ();
   NS_LOG_INFO ("Done.");
   return 0;
 }
-

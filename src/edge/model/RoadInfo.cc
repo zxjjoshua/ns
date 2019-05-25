@@ -51,7 +51,7 @@ Road* RoadInfo::RoadInfoParse(uint8_t* message){
   len+=4;
   memcpy(&point,&message[len],4);
   len+=4;
-  memcpy(&road->available,&message[leen],1);
+  memcpy(&road->available,&message[len],1);
   len+=1;
   return road;
 }

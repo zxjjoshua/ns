@@ -129,7 +129,7 @@ car_info* CarInfo::CarInfoGet(uint8_t *car_id)
 
 
 //通过定义的云端ip，端口，直接从数据库将包取出，发送到云端
-bool CarInfo::CarInfoUpload(car_info* car){
+bool CarInfo::CarInfoUpload(car_info* car, Ptr<Socket> socket){
   int len = 0;
   uint8_t value[100];
   uint8_t carid[3];

@@ -24,14 +24,14 @@ typedef struct car_info{
 class CarInfo{
 public:
     CarInfo();
-    static void CarInfoProcess(DataBase *db, char* ip, int from_port, char* message);
+    static void CarInfoProcess(Address ip, uint8_t* message);
 
 //    void set_key();
 private:
-    static car_info* CarInfoParse(char* message);
-    static bool CarInfoSave(DataBase *db, car_info* car);
-    static bool CarInfoUpload(char* car_id, DataBase *db);
-    static car_info* CarInfoGet(char* car_id, DataBase);
+    static car_info* CarInfoParse(uint8_t* message);
+    static bool CarInfoSave(car_info *car);
+    static bool CarInfoUpload(uint8_tr* car_id);
+    static car_info* CarInfoGet(uint8_t *car_id);
 
 
 };
@@ -40,4 +40,3 @@ private:
 
 
 #endif
-

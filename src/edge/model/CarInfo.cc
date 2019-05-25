@@ -15,16 +15,16 @@ CarInfo::CarInfo(){
 //将处理的车辆信息发送到云端
 //MTBT车辆id，车辆速度，加速度，车辆位置x，车辆位置y
 //“unsigned int, ”
-void CarInfo::CarInfoProcess(DataBase *db, char* ip, int from_port, char* message){
+void CarInfo::CarInfoProcess(Address ip, uint8_t* message){
     car_info* car;
-    char* key;
-    char* car_id;
+    uint8_t* key;
+    uint8_t* car_id;
     std::cout << ip<<" and messagee is "<<message<< std::endl;
     car=CarInfoParse(message);
 //    key=strcat(table_name,car_id);
 
-    CarInfoSave(db, car);
-    char* value;
+    CarInfoSave(car);
+    uint8_t* value;
 //    car=CarInfoParse(message);
 //    if(!CarInfoSave(db,car)){
 //        std::cout<<"car info save failed"<<std::endl;
@@ -32,13 +32,13 @@ void CarInfo::CarInfoProcess(DataBase *db, char* ip, int from_port, char* messag
 //    db->SetKey(key,value);
 //    db->ExpireKey(key,EXPIRE_TIME);
 
-    CarInfoUpload(&(car->car_id), db);
+    CarInfoUpload(&(car->car_id));
     free(car);
 
 }
 
 
-car_info* CarInfo::CarInfoParse(char *message){
+car_info* CarInfo::CarInfoParse(uint8_t* message){
     car_info* car=new car_info;//一定要先申明空间
     int len=0;
     char carid;
@@ -72,7 +72,7 @@ car_info* CarInfo::CarInfoParse(char *message){
 
 
 //存储车辆数据，注意考虑信息之间用逗号分隔
-bool CarInfo::CarInfoSave(DataBase* db,car_info *car){
+bool CarInfo::CarInfoSave(car_info *car){
     char key[]="";
     int len = 0;
     char value[100];
@@ -122,7 +122,7 @@ bool CarInfo::CarInfoSave(DataBase* db,car_info *car){
 
 }
 
-car_info *CarInfo::CarInfoGet(char *car_id, DataBase)
+car_info* CarInfo::CarInfoGet(uint8_t *car_id)
 {
     car_info* car=NULL;
     return car;
@@ -130,10 +130,10 @@ car_info *CarInfo::CarInfoGet(char *car_id, DataBase)
 
 
 //通过定义的云端ip，端口，直接从数据库将包取出，发送到云端
-bool CarInfo::CarInfoUpload(char* car_id, DataBase* db){
+bool CarInfo::CarInfoUpload(uint8_tr* car_id){
     char carid[8];
     sprintf(carid, "%d",car_id);
-    char* key=strcat(table_name,carid);
+    uint8_t* key=strcat(table_name,carid);
 
     //上传到云端的消息应该附带车辆ip吗？
     //while(!Communication::Send_To(db->GetKey(key),cloud_ip, cloud_port)){
@@ -141,5 +141,3 @@ bool CarInfo::CarInfoUpload(char* car_id, DataBase* db){
     //}
 
 }
-
-

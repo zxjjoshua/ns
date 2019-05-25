@@ -5,7 +5,7 @@ RoadInfo::RoadInfo(){
 
 }
 
-void RoadInfo::RoadInfoProceess(DataBase* db, char* meessage){
+void RoadInfo::RoadInfoProceess(uint8_t* meessage){
     //区分是来自云端还是来自车辆
     //云端的包就直接存储并且广播
     //车辆端就直接进行道路信息获取，并且返回

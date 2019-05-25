@@ -10,13 +10,13 @@ class Encourage
 {
 public:
     Encourage();
-    static void EncourageDocument(DataBase* db, char* ip, int port, char* message);
-    static void EncourageValidate( DataBase* db, char* ip, int port, char* message);
-    static void EncourageDocmentSucc(DataBase* db, char* ip, int port, char* message);
-    static void EncourageValidateSucc( DataBase* db, char* ip, int port, char* message);
+    static void EncourageDocument(Address ip, uint8_t* message);
+    static void EncourageValidate(Address ip, uint8_t* message);
+    static void EncourageDocmentSucc(Address ip, uint8_t* message);
+    static void EncourageValidateSucc(Address* ip, uint8_t* message);
 
-    static void AddIp(char* message, char *ip, char* send_buff, int *len);
-    static void AddPort(char* message, short port, char* send_buff, int *len);
+    static void AddIp(uint8_t* message, uint8_t *ip, char* send_buff, int *len);
+    static void AddPort(uint8_t* message, short port, char* send_buff, int *len);
 };
 }
 #endif

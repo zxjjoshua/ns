@@ -9,4 +9,3 @@ namespace ns3 {
 }
 
 #endif /* EDGE_H */
-

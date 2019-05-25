@@ -242,6 +242,3 @@ bool DataBase::ExpireKey(char *key, int ttl){
 //    FreeRedisReply(pRedisReply);
     return false;
 }
-
-
-

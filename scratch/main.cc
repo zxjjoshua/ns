@@ -165,7 +165,8 @@ main (int argc, char *argv[])
   Ipv4InterfaceContainer csmaInterfaces;
   csmaInterfaces = address.Assign (csmaDevices);
   serverAddress_2 = Address(csmaInterfaces.GetAddress (0));
-  std::cout<<"the type is "<<serverAddress_2.m_type<<"!!!!!!!!!!!!!!!"<<std::endl;
+  std::cout<<"the type is "<<int(serverAddress_1.m_type)<<" and its len !!"<<int(serverAddress_1.m_len)<<std::endl;
+  std::cout<<"the type is "<<int(serverAddress_2.m_type)<<" and its len !!"<<int(serverAddress_2.m_len)<<std::endl;
 //////////////////////////////////////////////////////
 //create multiple meessages to send
 char str1[100];

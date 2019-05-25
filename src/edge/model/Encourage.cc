@@ -42,19 +42,19 @@ void Encourage::AddIp(uint8_t *message,uint8_t* ip, uint8_t *send_buff, int* len
     for(int i=0;i<4;i++){
         memcpy(&send_buff[*len],&ip_4_c[i], 1);
         (*len)++;
-        std::cout<<"this is "<<strlen(send_buff)<<std::endl;
+        std::cout<<"this is "<<strlen((char*)send_buff)<<std::endl;
     }
     std::cout<<"this is "<<*len<<std::endl;
 }
 
-void Encourage::AddPort(char *message, short int port, char *send_buff, int *len)
-{
-    memcpy(&send_buff[(*len)],&port, 2 );
-    (*len)+=2;
-//    std::cout<<"this is "<<strlen(send_buff)<<std::endl;
-//    memcpy(&port,&send_buff[*(len)-2],1);
-//    std::cout<<"this is port "<<port<<std::endl;
-}
+// void Encourage::AddPort(uint8_t *message, short int port, char *send_buff, int *len)
+// {
+//     memcpy(&send_buff[(*len)],&port, 2 );
+//     (*len)+=2;
+// //    std::cout<<"this is "<<strlen(send_buff)<<std::endl;
+// //    memcpy(&port,&send_buff[*(len)-2],1);
+// //    std::cout<<"this is port "<<port<<std::endl;
+// }
 
 
 

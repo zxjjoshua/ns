@@ -17,7 +17,7 @@ public:
     static void EncourageValidateSucc(Address* ip, uint8_t* message);
 
     static void AddIp(uint8_t* message, uint8_t *ip, uint8_t* send_buff, int *len);
-    static void AddPort(uint8_t* message, short port, char* send_buff, int *len);
+    // static void AddPort(uint8_t* message, short port, char* send_buff, int *len);
 };
 }
 #endif

@@ -16,7 +16,7 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message)
     int len=strlen((char*)message);
     std::cout <<len<<std::endl;
     memcpy(send_buff,message,len);
-    uint8_t* u_ip=InetSocketAddress::ConvertFrom (from).GetIpv4 ();
+    uint8_t* u_ip=InetSocketAddress::ConvertFrom (ip).GetIpv4 ();
 
     AddIp(message, u_ip, send_buff,&len);
     // AddPort(message,(short) port, send_buff, &len);
@@ -27,12 +27,12 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message)
     free(send_buff);
 }
 
-void Encourage::AddIp(char *message,char* ip, char *send_buff, int* len)
+void Encourage::AddIp(char *message,uint8_t* ip, uint8_t *send_buff, int* len)
 {
     char ip_4_c[4];
     int ip_4[4];
     char* end;
-    std::vector<std::string> ip_4_str= MessageClassifier::ip2int(ip);
+    std::vector<std::string> ip_4_str= MessageClassifier::ip2int((char*)ip);
     for(int i=0;i<4;i++){
         sscanf(ip_4_str[i].c_str(),"%d",&ip_4[i]);
         ip_4_c[i]=(char)(ip_4[i]);

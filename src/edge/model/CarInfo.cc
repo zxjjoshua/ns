@@ -133,7 +133,7 @@ bool CarInfo::CarInfoUpload(uint8_t* car_id){
     uint8_t carid[8];
     sprintf(carid, "%d",car_id);
     uint8_t* key=strcat(table_name,carid);
-
+    return true;
     //上传到云端的消息应该附带车辆ip吗？
     //while(!Communication::Send_To(db->GetKey(key),cloud_ip, cloud_port)){
       //  std::cout << "info send failed"<<std::endl;

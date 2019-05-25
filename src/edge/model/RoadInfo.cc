@@ -14,7 +14,7 @@ void RoadInfo::RoadInfoProceess(uint8_t* message, Ptr<Socket> socket){
     RoadInfoUpload(message, socket);
 }
 
-bool RoadInfo::RoadInfoSave(road* car){
+bool RoadInfo::RoadInfoSave(Road* car){
   return true;
 }
 

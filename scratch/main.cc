@@ -164,7 +164,7 @@ main (int argc, char *argv[])
   Ipv4InterfaceContainer csmaInterfaces;
   csmaInterfaces = address.Assign (csmaDevices);
   serverAddress_2 = Address(csmaInterfaces.GetAddress (0));
-
+  NS_LOG_INFO("the type is "<<serverAddress_2.m_type<<"!!!!!!!!!!!!!!!");
 //////////////////////////////////////////////////////
 //create multiple meessages to send
 char str1[100];

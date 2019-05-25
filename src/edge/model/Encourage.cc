@@ -13,7 +13,7 @@ Encourage::Encourage()
 void Encourage::EncourageDocument(Address ip, uint8_t* message)
 {
     uint8_t* send_buff=new uint8_t[100];
-    int len=strlen(message);
+    int len=strlen((char*)message);
     std::cout <<len<<std::endl;
     memcpy(send_buff,message,len);
     uint8_t* u_ip=InetSocketAddress::ConvertFrom (from).GetIpv4 ();

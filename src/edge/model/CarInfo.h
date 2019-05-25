@@ -31,7 +31,7 @@ public:
 private:
     static car_info* CarInfoParse(uint8_t* message);
     static bool CarInfoSave(car_info *car);
-    static bool CarInfoUpload(uint8_tr* car_id);
+    static bool CarInfoUpload(uint8_t* car_id);
     static car_info* CarInfoGet(uint8_t *car_id);
 
 

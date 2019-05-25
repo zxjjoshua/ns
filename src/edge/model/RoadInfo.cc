@@ -29,6 +29,33 @@ void RoadInfo::RoadInfoUpload(uint8_t* message, Ptr<Socket> socket){
 }
 
 
+Road* RoadInfo::RoadInfoParse(uint8_t* message){
+  Road* road=new Road;
+  int len=0;
+  char MT_BT;
+  int ML;
+  float point;
+
+  memcpy(&MT_BT, &message[len++], 1);
+  memcpy(&ML, &message[len], 4);
+  len+=4;
+
+
+  memcpy(&road->road_name,message[len],1);
+  len+=1;
+  memcpy(&point,&message[len],4);
+  len+=4;
+  memcpy(&point,&message[len],4);
+  len+=4;
+  memcpy(&point,&message[len],4);
+  len+=4;
+  memcpy(&point,&message[len],4);
+  len+=4;
+  memcpy(&road->available,&avalable,1);
+  len+=1;
+  return road;
+}
+
 
 //void RoadInfo::RoadInfoReply(DataBase* db, char* car_ip, int car_port);//used to serve customers, if the cars reequest for road info, the send back.
 

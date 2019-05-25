@@ -3,9 +3,9 @@
 #include "CarInfo.h"
 #include "RoadInfo.h"
 #include "Encourage.h"
-#include "ns3/internet-module.h"
-#include "ns3/point-to-point-module.h"
-#include <fstream>
+// #include "ns3/internet-module.h"
+// #include "ns3/point-to-point-module.h"
+// #include <fstream>
 #define MODULE "MessageClassifier"
 
 namespace ns3{
@@ -23,18 +23,19 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
     char MT;
 
 
-    NodeContainer p2pNodes;
-    p2pNodes.Create(5);
-    NetDeviceContainer p2pDevices;
-    PointToPointHelper pointToPoint;
-    pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
-    pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
-    p2pDevices = pointToPoint.Install (p2pNodes);
-    Ipv4AddressHelper address;
-    address.SetBase ("10.1.1.0", "255.255.255.0");
-    Ipv4InterfaceContainer p2pInterfaces;
-    p2pInterfaces = address.Assign (p2pDevices);
-    Address to(p2pInterfaces.GetAddress(4));
+    // NodeContainer p2pNodes;
+    // p2pNodes.Create(5);
+    // NetDeviceContainer p2pDevices;
+    // PointToPointHelper pointToPoint;
+    // pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
+    // pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
+    // p2pDevices = pointToPoint.Install (p2pNodes);
+    // Ipv4AddressHelper address;
+    // address.SetBase ("10.1.1.0", "255.255.255.0");
+    // Ipv4InterfaceContainer p2pInterfaces;
+    // p2pInterfaces = address.Assign (p2pDevices);
+    uint8_t ip[]="10.1.1.5";
+    Address to(1,ip, std::strlen((char*)ip));
     printf("!!!!!!!!get address %s",to.m_data);
 
 

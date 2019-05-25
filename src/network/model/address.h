@@ -224,7 +224,7 @@ public:
    */
   void Deserialize (TagBuffer buffer);
 
-private:
+
   /**
    * \brief Equal to operator.
    *

@@ -50,12 +50,14 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
 
     }
     else{
-        socket->SendTo(packet, 0, to);
+      std::string reply="not ok";
+      Ptr<Packet> packet=Create<Packet>(reply.c_str(),reply.length());
+      socket->SendTo(packet, 0, to);
         //Communication::Send_To(message,ip,port);
     }
 }
 
-vector<string> MessageClassifier::ip2int(char *ip)
+std::vector<string> MessageClassifier::ip2int(char *ip)
 {
     //const char* convert to char*
     char * strc = new char[strlen(ip)+1];

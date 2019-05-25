@@ -475,6 +475,9 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
           NS_LOG_INFO ("At time " << Simulator::Now ().GetSeconds () << "s client received " << packet->GetSize () << " bytes from " <<
                        InetSocketAddress::ConvertFrom (from).GetIpv4 () << " port " <<
                        InetSocketAddress::ConvertFrom (from).GetPort ());
+
+                       NS_LOG_INFO("get packet from "<<from.m_data<<"!!!!");
+                       std::cout <<"get packet from "<<from.m_data<<"!!!!"<<std::endl;
         }
       else if (Inet6SocketAddress::IsMatchingType (from))
         {
@@ -483,8 +486,7 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
                        Inet6SocketAddress::ConvertFrom (from).GetPort ());
         }
       socket->GetSockName (localAddress);
-      NS_LOG_INFO("get packet from "<<from.m_data<<"!!!!");
-      std::cout <<"get packet from "<<from.m_data<<"!!!!"<<std::endl;
+
       m_rxTrace (packet);
       m_rxTraceWithAddresses (packet, from, localAddress);
     }

@@ -1,6 +1,6 @@
 #include "RoadInfo.h"
 
-
+namespace ns3{
 RoadInfo::RoadInfo(){
 
 }
@@ -17,3 +17,4 @@ void RoadInfo::RoadInfoProceess(uint8_t* meessage){
 //Road* RoadInfo::RoadInfoParse(char* message);
 //bool RoadInfo::RoadInfoSave(DataBase *db, car_info* car);
 //void RoadInfo::RoadInfoBroadcast();// use broadcast tech to broad the meessage
+}

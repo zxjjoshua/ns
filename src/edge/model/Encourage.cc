@@ -4,21 +4,23 @@
 #include <stdlib.h>
 #include <string.h>
 
+ namespace ns3{
 Encourage::Encourage()
 {
 
 }
 
-void Encourage::EncourageDocument(DataBase *db, char *ip, int port, char *message)
+void Encourage::EncourageDocument(Address ip, uint8_t* message)
 {
-    char* send_buff=new char[100];
+    uint8_t* send_buff=new uint8_t[100];
     int len=strlen(message);
     std::cout <<len<<std::endl;
     memcpy(send_buff,message,len);
+    uint8_t* u_ip=InetSocketAddress::ConvertFrom (from).GetIpv4 ();
 
+    AddIp(message, u_ip, send_buff,&len);
+    // AddPort(message,(short) port, send_buff, &len);
 
-    AddIp(message, ip, send_buff,&len);
-    AddPort(message,(short) port, send_buff, &len);
 
     //Communication::Send_To(send_buff,cloud_ip,cloud_port);
 
@@ -57,5 +59,4 @@ void Encourage::AddPort(char *message, short int port, char *send_buff, int *len
 
 
 
-
-
+}

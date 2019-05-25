@@ -3,7 +3,7 @@
 
 #define EXPIRE_TIME 50
 
-
+namespace ns3{
 CarInfo::CarInfo(){
 
 
@@ -140,4 +140,5 @@ bool CarInfo::CarInfoUpload(uint8_tr* car_id){
       //  std::cout << "info send failed"<<std::endl;
     //}
 
+}
 }

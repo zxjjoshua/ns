@@ -9,6 +9,7 @@
 #define cloud_ip "12.3.2.21"
 #define cloud_port 3232
 
+namespace ns3{
 typedef struct car_info{
     char car_id;
     unsigned short int car_speed;
@@ -36,7 +37,7 @@ private:
 
 };
 
-
+}
 
 
 #endif

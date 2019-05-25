@@ -5,7 +5,7 @@
 
 //there can be two type of message, first can be cloud-reply, second can be car-request
 //需要先区分两种包
-
+namespace ns3{
 
 typedef struct Road{
     uint8_t* road_name;//or consider for a road_id?
@@ -25,6 +25,6 @@ private:
     static void RoadInfoBroadcast();// use broadcast tech to broad the meessage
 };
 
-
+}
 
 #endif

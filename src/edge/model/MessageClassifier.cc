@@ -1,6 +1,5 @@
 #include "MessageClassifier.h"
 #include <string.h>
-
 #include "CarInfo.h"
 #include "RoadInfo.h"
 #include "Encourage.h"
@@ -22,7 +21,16 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
     //message format:
     //MT1bit BT1bit
     char MT;
-    Address to("10.1.1.4");
+
+
+    Ipv4AddressHelper address;
+    address.SetBase ("10.1.1.0", "255.255.255.0");
+    Ipv4InterfaceContainer p2pInterfaces;
+    p2pInterfaces = address.Assign (p2pDevices);
+    Address to(p2pInterfaces.GetAddress(4));
+    printf("!!!!!!!!get address %s",to.m_data);
+
+
     // to.m_data=;
     memcpy( &MT, message, 1);
     std::cout<<"this is MT "<<(int)(MT)<<std::endl;

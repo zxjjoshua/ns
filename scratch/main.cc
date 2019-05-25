@@ -48,22 +48,22 @@ void SetCarInfo(char* str, uint8_t car_id, short int speed, float p_x,
   {
     int len=0;
     char MT_BT=128+1;
-    int ML=672;
+    int ML=16;
     // char car_id=33;
     // short int speed=99;
     // float position_x=233.234;
     // float position_y=32.2216;
-    memcpy(&str1[len],&MT_BT,1);
+    memcpy(&str[len],&MT_BT,1);
     len++;
-    memcpy(&str1[len],&ML,4);
+    memcpy(&str[len],&ML,4);
     len+=4;
-    memcpy(&str1[len],&car_id,1);
+    memcpy(&str[len],&car_id,1);
     len+=1;
-    memcpy(&str1[len],&speed,2);
+    memcpy(&str[len],&speed,2);
     len+=2;
-    memcpy(&str1[len],&p_x,4);
+    memcpy(&str[len],&p_x,4);
     len+=4;
-    memcpy(&str1[len],&p_y,4);
+    memcpy(&str[len],&p_y,4);
     len+=4;
 }
 
@@ -172,26 +172,6 @@ char str2[100];
 char str3[100];
 char str4[100];
 
-
-int len=0;
-char MT_BT=128+1;
-int ML=672;
-char car_id=33;
-short int speed=99;
-float position_x=233.234;
-float position_y=32.2216;
-memcpy(&str1[len],&MT_BT,1);
-len++;
-memcpy(&str1[len],&ML,4);
-len+=4;
-memcpy(&str1[len],&e,1);
-len+=1;
-memcpy(&str1[len],&speed,2);
-len+=2;
-memcpy(&str1[len],&position_x,4);
-len+=4;
-memcpy(&str1[len],&position_y,4);
-len+=4;
 
 SetCarInfo(str1, 1, 30, 23.23, 43.232);
 SetCarInfo(str2, 2, 40, 233.23, 3.232);

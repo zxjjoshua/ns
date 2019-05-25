@@ -57,7 +57,7 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
     }
 }
 
-std::vector<string> MessageClassifier::ip2int(char *ip)
+std::vector<std::string> MessageClassifier::ip2int(char *ip)
 {
     //const char* convert to char*
     char * strc = new char[strlen(ip)+1];

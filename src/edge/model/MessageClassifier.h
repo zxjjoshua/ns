@@ -5,7 +5,8 @@
 #include <vector>
 #include "ns3/ipv4-address.h"
 #include <stdint.h>
-
+#include "ns3/socket.h"
+#include "ns3/packet.h"
 
 namespace ns3{
 

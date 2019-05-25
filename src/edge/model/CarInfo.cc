@@ -158,8 +158,8 @@ bool CarInfo::CarInfoUpload(car_info* car){
   len+=4;
 
   Ptr<Packet> packet=Create<Packet> (value, len+1);
-  Address cloud;
-  cloud.m_data="10.1.1.4";
+  Address cloud("10.1.1.4");
+  // cloud.m_data=;
   socket->SendTo(packet, 0, cloud);
 
   //send

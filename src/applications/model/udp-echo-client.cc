@@ -476,7 +476,7 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
                        InetSocketAddress::ConvertFrom (from).GetIpv4 () << " port " <<
                        InetSocketAddress::ConvertFrom (from).GetPort ());
 
-                       NS_LOG_INFO("get packet from "<<from.m_data<<"!!!!");
+                       NS_LOG_INFO("get packet from "<<(char*)from.m_data<<"!!!!");
                        std::cout <<"get packet from "<<from.m_data<<"!!!!"<<std::endl;
         }
       else if (Inet6SocketAddress::IsMatchingType (from))

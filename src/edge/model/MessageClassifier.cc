@@ -23,6 +23,10 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
     char MT;
 
 
+    NodeContainer p2pNodes;
+    p2pNodes.Create(5);
+    NetDeviceContainer p2pDevices;
+    p2pDevices = pointToPoint.Install (p2pNodes);
     Ipv4AddressHelper address;
     address.SetBase ("10.1.1.0", "255.255.255.0");
     Ipv4InterfaceContainer p2pInterfaces;

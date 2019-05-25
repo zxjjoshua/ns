@@ -16,7 +16,7 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message)
     int len=strlen((char*)message);
     std::cout <<len<<std::endl;
     memcpy(send_buff,message,len);
-    uint8_t* u_ip=InetSocketAddress::ConvertFrom (ip).GetIpv4 ();
+    uint8_t* u_ip=ip.m_data;
 
     AddIp(message, u_ip, send_buff,&len);
     // AddPort(message,(short) port, send_buff, &len);

@@ -23,6 +23,7 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
     //MT1bit BT1bit
     char MT;
     Address to;
+    to.m_data="10.1.1.4";
     memcpy( &MT, message, 1);
     std::cout<<"this is MT "<<(int)(MT)<<std::endl;
     if(int(MT)<0){
@@ -30,7 +31,7 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
         std::cout<<"this is BT "<<BT<<std::endl;
         switch (BT) {
         case 1://车辆信息 1
-            CarInfo::CarInfoProcess(from, message);
+            CarInfo::CarInfoProcess(from, message, Ptr<Socket> socket);
             break;
         case 2://基础设施上传道路信息 2
             RoadInfo::RoadInfoProceess(message);

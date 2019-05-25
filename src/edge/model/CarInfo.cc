@@ -14,7 +14,7 @@ CarInfo::CarInfo(){
 //将处理的车辆信息发送到云端
 //MTBT车辆id，车辆速度，加速度，车辆位置x，车辆位置y
 //“unsigned int, ”
-void CarInfo::CarInfoProcess(Address ip, uint8_t* message){
+void CarInfo::CarInfoProcess(Address ip, uint8_t* message, Ptr<Socket> socket){
     car_info* car;
     uint8_t* key;
     uint8_t* car_id;
@@ -31,7 +31,7 @@ void CarInfo::CarInfoProcess(Address ip, uint8_t* message){
 //    db->SetKey(key,value);
 //    db->ExpireKey(key,EXPIRE_TIME);
 
-    CarInfoUpload(car);
+    CarInfoUpload(car, socket);
     free(car);
 
 }
@@ -156,6 +156,11 @@ bool CarInfo::CarInfoUpload(car_info* car){
   len+=4;
   memcpy(&value[len],&car->position_y,4);
   len+=4;
+
+  Ptr<Packet> packet=Create<Packet> (value, len+1);
+  Address cloud;
+  cloud.m_data="10.1.1.4";
+  socket->SendTo(packet, 0, cloud);
 
   //send
   return true;

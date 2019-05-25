@@ -13,7 +13,7 @@ namespace ns3{
 
 
 
-void MessageClassifier::Router(char* message, Address from, Ptr<Socket> socket){
+void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socket){
     //classify via classify table:
     //carinfo
     //roadinfo

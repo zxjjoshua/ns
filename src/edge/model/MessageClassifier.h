@@ -17,7 +17,7 @@ class MessageClassifier
 public:
     MessageClassifier();
 //    MessageProcess();
-    static void Router(char* message, Address from, Ptr<Socket> socket);
+    static void Router(uint8_t* message, Address from, Ptr<Socket> socket);
     static std::vector<std::string> ip2int(char* ip);
 
 };

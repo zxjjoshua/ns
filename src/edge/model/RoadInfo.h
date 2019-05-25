@@ -18,7 +18,7 @@ typedef struct Road{
 class RoadInfo{
 public:
     RoadInfo();
-    static void RoadInfoProceess(uint8_t* meessage);
+    static void RoadInfoProceess(uint8_t* meessage, Ptr<Socket> socket);
     static void RoadInfoReply(uint8_t* car_ip, int car_port);//used to serve customers, if the cars reequest for road info, the send back.
 private:
     static Road* RoadInfoParse(uint8_t* message);

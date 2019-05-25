@@ -496,7 +496,7 @@ char* UdpEchoClient::GetName(void){
   return this->m_name;
 }
 
-void UdpEchoClient::Send(Ptr<Packet> packet, Address to){
+void UdpEchoClient::Sendto(Ptr<Packet> packet, Address to){
   TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
   Ptr<Socket> socket= Socket::CreateSocket (GetNode (), tid);
   socket->SendTo(packet, 0, to);

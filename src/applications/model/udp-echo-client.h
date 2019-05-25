@@ -131,7 +131,7 @@ public:
   void SetFill (uint8_t *fill, uint32_t fillSize, uint32_t dataSize);
   void SetName(char* name);
   char* GetName();
-  void SendTo(Ptr<Packet> packet, Address to);
+  void Sendto(Ptr<Packet> packet, Address to);
   char m_name[10];
 protected:
   virtual void DoDispose (void);

@@ -4,6 +4,8 @@
 #define cloud_ip "12.3.2.21"
 #define cloud_port 3232
 
+namespace ns3 {
+class MessageClassifier;
 class Encourage
 {
 public:
@@ -16,6 +18,5 @@ public:
     static void AddIp(char* message, char *ip, char* send_buff, int *len);
     static void AddPort(char* message, short port, char* send_buff, int *len);
 };
-
+}
 #endif
-

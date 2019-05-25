@@ -29,6 +29,7 @@
 // - Tracing of queues and packet receptions to file "udp-echo.tr"
 
 #include <fstream>
+#include <iostream>
 #include "ns3/core-module.h"
 #include "ns3/csma-module.h"
 #include "ns3/applications-module.h"
@@ -76,7 +77,7 @@ main (int argc, char *argv[])
 // for selected modules; the below lines suggest how to do this
 //
 #if 1
-//  LogComponentEnable ("UdpEchoExample", LOG_LEVEL_INFO);
+ // LogComponentEnable ("UdpEchoExample", LOG_LEVEL_INFO);
   LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_ALL);
   LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_ALL);
 #endif
@@ -164,7 +165,7 @@ main (int argc, char *argv[])
   Ipv4InterfaceContainer csmaInterfaces;
   csmaInterfaces = address.Assign (csmaDevices);
   serverAddress_2 = Address(csmaInterfaces.GetAddress (0));
-  NS_LOG_INFO("the type is "<<serverAddress_2.m_type<<"!!!!!!!!!!!!!!!");
+  std::cout<<"the type is "<<serverAddress_2.m_type<<"!!!!!!!!!!!!!!!"<<std::endl;
 //////////////////////////////////////////////////////
 //create multiple meessages to send
 char str1[100];

@@ -175,7 +175,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
 //std::cout <<packet->ToString()<<std::endl;
 
     NS_LOG_INFO("this is what seerver get" <<content);
-	MessageeClassifier::Router(content, from);
+	MessageClassifier::Router(content, from);
         }
       else if (Inet6SocketAddress::IsMatchingType (from))
         {

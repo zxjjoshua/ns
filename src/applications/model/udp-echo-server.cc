@@ -1,7 +1,7 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 /*
  * Copyright 2007 University of Washington
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation;
@@ -78,7 +78,7 @@ UdpEchoServer::DoDispose (void)
   Application::DoDispose ();
 }
 
-void 
+void
 UdpEchoServer::StartApplication (void)
 {
   NS_LOG_FUNCTION (this);
@@ -135,30 +135,32 @@ UdpEchoServer::StartApplication (void)
   m_socket6->SetRecvCallback (MakeCallback (&UdpEchoServer::HandleRead, this));
 }
 
-void 
+void
 UdpEchoServer::StopApplication ()
 {
   NS_LOG_FUNCTION (this);
 
-  if (m_socket != 0) 
+  if (m_socket != 0)
     {
       m_socket->Close ();
       m_socket->SetRecvCallback (MakeNullCallback<void, Ptr<Socket> > ());
     }
-  if (m_socket6 != 0) 
+  if (m_socket6 != 0)
     {
       m_socket6->Close ();
       m_socket6->SetRecvCallback (MakeNullCallback<void, Ptr<Socket> > ());
     }
 }
 
-void 
+void
 UdpEchoServer::HandleRead (Ptr<Socket> socket)
 {
   NS_LOG_FUNCTION (this << socket);
   Ptr<Packet> packet;
   Address from;
   Address localAddress;
+  // Ptr<Socket> socket=0;
+
   while ((packet = socket->RecvFrom (from)))
     {
       socket->GetSockName (localAddress);
@@ -171,12 +173,22 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
                        InetSocketAddress::ConvertFrom (from).GetPort ());
     //NS_LOG_INFO("server reecieveed "<<packet->ToString());
     //packet->Output(packet->GetSize());
-    uint8_t* content= packet->GetContent(packet->GetSize());
-//std::cout <<packet->ToString()<<std::endl;
+        uint8_t* content= packet->GetContent(packet->GetSize());
+        NS_LOG_INFO("this is what seerver get" <<content);
+        // if (socket == 0)
+        //   {
+        //     TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
+        //     socket = Socket::CreateSocket (GetNode (), tid);
+        //     InetSocketAddress local = InetSocketAddress (Ipv4Address::GetAny (), m_port);
+        //     if (m_socket->Bind (local) == -1)
+        //       {
+        //         NS_FATAL_ERROR ("Failed to bind socket");
+        //       }
+        //   }
+      }
 
-    NS_LOG_INFO("this is what seerver get" <<content);
-	MessageClassifier::Router(content, from);
-        }
+        MessageClassifier::Router(content, from, socket);
+
       else if (Inet6SocketAddress::IsMatchingType (from))
         {
           NS_LOG_INFO ("At time " << Simulator::Now ().GetSeconds () << "s server received " << packet->GetSize () << " bytes from " <<
@@ -205,6 +217,11 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
     }
 }
 
+void UdpEchoServer::Send(Ptr<Packet> packet, Address to){
+  Ptr<Socket> socket= Socket::CreateSocket (GetNode (), tid);
+  socket->SendTo(packet, 0, to);
+}
+
 void UdpEchoServer::SetName(char* name){
   strcpy(name,this->m_name);
 }
@@ -215,4 +232,3 @@ char* UdpEchoServer::GetName(void){
 
 
 } // Namespace ns3
-

@@ -9,9 +9,11 @@
 
 #define MODULE "MessageClassifier"
 
-using namespace std;
+namespace ns3{
 
-void MessageClassifier::Router(char *message, Adreess from){
+
+
+void MessageClassifier::Router(char* message, Address from, Ptr<Socket> socket){
     //classify via classify table:
     //carinfo
     //roadinfo
@@ -20,8 +22,8 @@ void MessageClassifier::Router(char *message, Adreess from){
     //message format:
     //MT1bit BT1bit
     char MT;
+    Address to;
     memcpy( &MT, message, 1);
-
     std::cout<<"this is MT "<<(int)(MT)<<std::endl;
     if(int(MT)<0){
         int BT=int(message[0]&0x7f);//第一位归零
@@ -48,6 +50,7 @@ void MessageClassifier::Router(char *message, Adreess from){
 
     }
     else{
+        socket->SendTo(packet, 0, to);
         //Communication::Send_To(message,ip,port);
     }
 }
@@ -69,4 +72,4 @@ vector<string> MessageClassifier::ip2int(char *ip)
     return resultVec;
 }
 
-
+}

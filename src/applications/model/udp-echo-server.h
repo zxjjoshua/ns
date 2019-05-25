@@ -1,7 +1,7 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 /*
  * Copyright 2007 University of Washington
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation;
@@ -31,7 +31,7 @@ class Socket;
 class Packet;
 
 /**
- * \ingroup applications 
+ * \ingroup applications
  * \defgroup udpecho UdpEcho
  */
 
@@ -41,7 +41,7 @@ class Packet;
  *
  * Every packet received is sent back.
  */
-class UdpEchoServer : public Application 
+class UdpEchoServer : public Application
 {
 public:
   /**
@@ -51,10 +51,12 @@ public:
   static TypeId GetTypeId (void);
   UdpEchoServer ();
   virtual ~UdpEchoServer ();
-  
+
   void SetName(char* name);
   char* GetName(void);
   char m_name[10];
+
+  void Send(Ptr<Packet> packet, Address to)
 protected:
   virtual void DoDispose (void);
 
@@ -87,5 +89,3 @@ private:
 } // namespace ns3
 
 #endif /* UDP_ECHO_SERVER_H */
-
-

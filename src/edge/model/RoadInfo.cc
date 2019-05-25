@@ -5,7 +5,7 @@ RoadInfo::RoadInfo(){
 
 }
 
-void RoadInfo::RoadInfoProceess(uint8_t* meessage, Ptr<Socket> socket){
+void RoadInfo::RoadInfoProceess(uint8_t* message, Ptr<Socket> socket){
     //区分是来自云端还是来自车辆
     //云端的包就直接存储并且广播
     //车辆端就直接进行道路信息获取，并且返回
@@ -14,7 +14,7 @@ void RoadInfo::RoadInfoProceess(uint8_t* meessage, Ptr<Socket> socket){
     RoadInfoUpload(message, socket);
 }
 
-bool RoadInfo::RoadInfoSave(car_info* car){
+bool RoadInfo::RoadInfoSave(road* car){
   return true;
 }
 

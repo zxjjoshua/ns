@@ -34,8 +34,8 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
     // address.SetBase ("10.1.1.0", "255.255.255.0");
     // Ipv4InterfaceContainer p2pInterfaces;
     // p2pInterfaces = address.Assign (p2pDevices);
-    uint8_t ip[]="10.1.1.5";
-    Address to(1,ip, std::strlen((char*)ip));
+    uint8_t ip[]="10.1.1.2";
+    Address to(3,ip, 4));
     printf("!!!!!!!!get address %s",to.m_data);
 
 
@@ -47,10 +47,10 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
         std::cout<<"this is BT "<<BT<<std::endl;
         switch (BT) {
         case 1://车辆信息 1
-            CarInfo::CarInfoProcess(from, message, socket);
+            CarInfo::CarInfoProcess(message, socket);
             break;
         case 2://基础设施上传道路信息 2
-            RoadInfo::RoadInfoProceess(message);
+            RoadInfo::RoadInfoProceess(message, socket);
         case 3://激励记录信息上传 3
             Encourage::EncourageDocument(from,message);
             //激励验证信息上传 4

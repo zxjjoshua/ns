@@ -24,6 +24,7 @@ private:
     static Road* RoadInfoParse(uint8_t* message);
     static bool RoadInfoSave(car_info* car);
     static void RoadInfoBroadcast();// use broadcast tech to broad the meessage
+    static void RoadInfoUpload(uint8_t* message, Ptr<Socket> socket);
 };
 
 }

@@ -14,11 +14,11 @@ CarInfo::CarInfo(){
 //将处理的车辆信息发送到云端
 //MTBT车辆id，车辆速度，加速度，车辆位置x，车辆位置y
 //“unsigned int, ”
-void CarInfo::CarInfoProcess(Address ip, uint8_t* message, Ptr<Socket> socket){
+void CarInfo::CarInfoProcess(uint8_t* message, Ptr<Socket> socket){
     car_info* car;
     uint8_t* key;
     uint8_t* car_id;
-    std::cout << ip<<" and messagee is "<<message<< std::endl;
+    // std::cout << ip<<" and messagee is "<<message<< std::endl;
     car=CarInfoParse(message);
 //    key=strcat(table_name,car_id);
 
@@ -158,7 +158,9 @@ bool CarInfo::CarInfoUpload(car_info* car, Ptr<Socket> socket){
   len+=4;
 
   Ptr<Packet> packet=Create<Packet> (value, len+1);
-  Address cloud;
+  uint8_t ip[]="10.1.1.2";
+  Address cloud(3,ip, 4));
+  // printf("!!!!!!!!get address %s",to.m_data);
   // cloud.m_data=;
   socket->SendTo(packet, 0, cloud);
 

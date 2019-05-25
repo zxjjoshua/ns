@@ -5,11 +5,29 @@ RoadInfo::RoadInfo(){
 
 }
 
-void RoadInfo::RoadInfoProceess(uint8_t* meessage){
+void RoadInfo::RoadInfoProceess(uint8_t* meessage, Ptr<Socket> socket){
     //区分是来自云端还是来自车辆
     //云端的包就直接存储并且广播
     //车辆端就直接进行道路信息获取，并且返回
+    Road* road=RoadInfoParse(message);
+    RoadInfoSave(road);
+    RoadInfoUpload(message, socket);
 }
+
+bool RoadInfo::RoadInfoSave(car_info* car){
+  return true;
+}
+
+void RoadInfo::RoadInfoUpload(uint8_t* message, Ptr<Socket> socket){
+  int len=std::strlen((char*)message);
+  Ptr<Packet> packet=Create<Packet> (message, len+1);
+  uint8_t ip[]="10.1.1.2";
+  Address cloud(3,ip, 4));
+  // printf("!!!!!!!!get address %s",to.m_data);
+  // cloud.m_data=;
+  socket->SendTo(packet, 0, cloud);
+}
+
 
 
 //void RoadInfo::RoadInfoReply(DataBase* db, char* car_ip, int car_port);//used to serve customers, if the cars reequest for road info, the send back.

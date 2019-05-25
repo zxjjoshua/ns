@@ -28,7 +28,7 @@ typedef struct car_info{
 class CarInfo{
 public:
     CarInfo();
-    static void CarInfoProcess(Address ip, uint8_t* message, Ptr<Socket> socket);
+    static void CarInfoProcess(uint8_t* message, Ptr<Socket> socket);
 
 //    void set_key();
     static car_info* CarInfoParse(uint8_t* message);

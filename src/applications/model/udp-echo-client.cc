@@ -28,6 +28,7 @@
 #include "ns3/uinteger.h"
 #include "ns3/trace-source-accessor.h"
 #include "udp-echo-client.h"
+#include "iostream"
 
 namespace ns3 {
 
@@ -482,6 +483,8 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
                        Inet6SocketAddress::ConvertFrom (from).GetPort ());
         }
       socket->GetSockName (localAddress);
+      NS_LOG_INFO("get packet from "<<from.m_data<<"!!!!");
+      std::cout <<"get packet from "<<from.m_data<<"!!!!")<<std::endl;
       m_rxTrace (packet);
       m_rxTraceWithAddresses (packet, from, localAddress);
     }

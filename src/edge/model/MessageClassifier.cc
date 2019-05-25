@@ -51,7 +51,7 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
     }
     else{
       std::string reply="not ok";
-      Ptr<Packet> packet=Create<Packet>(reply.c_str(),reply.length());
+      Ptr<Packet> packet=Create<Packet>((uint8_t*)(reply.c_str()),reply.length());
       socket->SendTo(packet, 0, to);
         //Communication::Send_To(message,ip,port);
     }

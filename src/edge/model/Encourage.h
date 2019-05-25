@@ -3,6 +3,7 @@
 #include "DataBase.h"
 #define cloud_ip "12.3.2.21"
 #define cloud_port 3232
+#include "ns3/ipv4-address.h"
 
 namespace ns3 {
 class MessageClassifier;

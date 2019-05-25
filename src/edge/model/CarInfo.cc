@@ -1,6 +1,5 @@
 #include "CarInfo.h"
 #include <string.h>
-
 #define EXPIRE_TIME 50
 
 namespace ns3{

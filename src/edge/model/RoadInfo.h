@@ -2,6 +2,7 @@
 #define __roadinfo__
 #include "DataBase.h"
 #include "CarInfo.h"
+#include "ns3/ipv4-address.h"
 
 //there can be two type of message, first can be cloud-reply, second can be car-request
 //需要先区分两种包

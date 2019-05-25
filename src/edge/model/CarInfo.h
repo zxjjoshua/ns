@@ -2,7 +2,7 @@
 #define __carinfo__
 #include <iostream>
 #include "DataBase.h"
-
+#include "ns3/ipv4-address.h"
 
 #define table_name "carinfo_"
 #define key_ttl 50

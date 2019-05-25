@@ -66,7 +66,7 @@ std::vector<std::string> MessageClassifier::ip2int(char *ip)
     char* tmpStr = strtok(strc,".");
     while (tmpStr != NULL)
     {
-        resultVec.push_back(string(tmpStr));
+        resultVec.push_back(std::string(tmpStr));
         tmpStr = strtok(NULL, ".");
     }
     delete[] strc;

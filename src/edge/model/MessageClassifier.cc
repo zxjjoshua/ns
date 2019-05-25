@@ -4,7 +4,7 @@
 #include "RoadInfo.h"
 #include "Encourage.h"
 #include "ns3/internet-module.h"
-
+#include "ns3/point-to-point-module.h"
 
 #define MODULE "MessageClassifier"
 

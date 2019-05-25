@@ -26,6 +26,9 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
     NodeContainer p2pNodes;
     p2pNodes.Create(5);
     NetDeviceContainer p2pDevices;
+    PointToPointHelper pointToPoint;
+    pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
+    pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
     p2pDevices = pointToPoint.Install (p2pNodes);
     Ipv4AddressHelper address;
     address.SetBase ("10.1.1.0", "255.255.255.0");

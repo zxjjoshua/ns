@@ -56,7 +56,7 @@ public:
   char* GetName(void);
   char m_name[10];
 
-  void Send(Ptr<Packet> packet, Address to)
+  void Send(Ptr<Packet> packet, Address to);
 protected:
   virtual void DoDispose (void);
 

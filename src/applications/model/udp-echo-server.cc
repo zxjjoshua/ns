@@ -175,6 +175,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
     //packet->Output(packet->GetSize());
         uint8_t* content= packet->GetContent(packet->GetSize());
         NS_LOG_INFO("this is what seerver get" <<content);
+	MessageClassifier::Router(content, from, socket);
         // if (socket == 0)
         //   {
         //     TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
@@ -186,9 +187,6 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
         //       }
         //   }
       }
-
-        MessageClassifier::Router(content, from, socket);
-
       else if (Inet6SocketAddress::IsMatchingType (from))
         {
           NS_LOG_INFO ("At time " << Simulator::Now ().GetSeconds () << "s server received " << packet->GetSize () << " bytes from " <<
@@ -218,6 +216,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
 }
 
 void UdpEchoServer::Send(Ptr<Packet> packet, Address to){
+  TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
   Ptr<Socket> socket= Socket::CreateSocket (GetNode (), tid);
   socket->SendTo(packet, 0, to);
 }

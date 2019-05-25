@@ -27,7 +27,7 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message)
     free(send_buff);
 }
 
-void Encourage::AddIp(char *message,uint8_t* ip, uint8_t *send_buff, int* len)
+void Encourage::AddIp(uint8_t *message,uint8_t* ip, uint8_t *send_buff, int* len)
 {
     char ip_4_c[4];
     int ip_4[4];

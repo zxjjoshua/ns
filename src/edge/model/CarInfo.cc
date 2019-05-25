@@ -31,7 +31,7 @@ void CarInfo::CarInfoProcess(Address ip, uint8_t* message){
 //    db->SetKey(key,value);
 //    db->ExpireKey(key,EXPIRE_TIME);
 
-    CarInfoUpload(&(car->car_id));
+    CarInfoUpload(car);
     free(car);
 
 }
@@ -72,13 +72,13 @@ car_info* CarInfo::CarInfoParse(uint8_t* message){
 
 //存储车辆数据，注意考虑信息之间用逗号分隔
 bool CarInfo::CarInfoSave(car_info *car){
-    char key[]="";
+    // char key[]="";
     int len = 0;
-    char value[100];
-    char carid[3];
+    uint8_t value[100];
+    uint8_t carid[3];
     int message_len=11;
 
-    sprintf(carid, "%d",car->car_id);
+    // sprintf(carid, "%d",car->car_id);
 
     memcpy(&value[len],&(car->car_id),1);
     len++;
@@ -100,8 +100,8 @@ bool CarInfo::CarInfoSave(car_info *car){
     memcpy(&value[len],&car->position_y,4);
     len+=4;
 
-    strcat(key,table_name);
-    strcat(key,carid);
+    // strcat(key,table_name);
+    // strcat(key,carid);
 //    std::cout <<"this is car info "<<key<<std::endl;
 
 
@@ -129,11 +129,36 @@ car_info* CarInfo::CarInfoGet(uint8_t *car_id)
 
 
 //通过定义的云端ip，端口，直接从数据库将包取出，发送到云端
-bool CarInfo::CarInfoUpload(uint8_t* car_id){
-    uint8_t carid[8];
-    sprintf(carid, "%d",car_id);
-    uint8_t* key=strcat(table_name,carid);
-    return true;
+bool CarInfo::CarInfoUpload(car_info* car){
+  int len = 0;
+  uint8_t value[100];
+  uint8_t carid[3];
+  int message_len=11;
+
+  // sprintf(carid, "%d",car->car_id);
+
+  memcpy(&value[len],&(car->car_id),1);
+  len++;
+//    std::cout<<"in heere"<<carid << std::endl;
+
+  memcpy(&value[len],&message_len,4);
+  len+=4;
+
+
+//    memcpy(&a[len],&c,strlen(c));
+//    len+=strlen(c);
+  memcpy(&value[len],&car->car_id,1);
+  len+=1;
+
+  memcpy(&value[len],&car->car_speed,2);
+  len+=2;
+  memcpy(&value[len],&car->position_x,4);
+  len+=4;
+  memcpy(&value[len],&car->position_y,4);
+  len+=4;
+
+  //send
+  return true;
     //上传到云端的消息应该附带车辆ip吗？
     //while(!Communication::Send_To(db->GetKey(key),cloud_ip, cloud_port)){
       //  std::cout << "info send failed"<<std::endl;

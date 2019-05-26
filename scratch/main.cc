@@ -117,8 +117,7 @@ void SetValidateInfo(char* str, short int car_id, short int point)
     len+=2;
 }
 
-void SetDocumentInfo(char* str, short int car_id, time_t start_time,
-  time_t end_time, time_t serve_time, short int serve_num,short* car_id_list)
+void SetDocumentInfo(char* str, short int car_id, time_t start_time, time_t end_time, time_t serve_time, short int serve_num,short* car_id_list)
   {
     int len=0;
     char MT_BT=128+3;
@@ -142,7 +141,7 @@ void SetDocumentInfo(char* str, short int car_id, time_t start_time,
     memcpy(&str[len],&serve_num,2);
     len+=2;
     for(int i=0;i<serve_num;i++){
-      memcpy(&str[len],&(*car_id_list[i]),2);
+      memcpy(&str[len],&(car_id_list[i]),2);
       len+=2;
     }
 }

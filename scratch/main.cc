@@ -210,7 +210,7 @@ main (int argc, char *argv[])
   bool useV6 = false;
   Address serverAddress_1;
   Address serverAddress_2;
-  Address cloudAddress
+  Address cloudAddress;
 
   CommandLine cmd;
   cmd.AddValue ("useIpv6", "Use Ipv6", useV6);

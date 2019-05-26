@@ -280,6 +280,8 @@ main (int argc, char *argv[])
   Ipv4InterfaceContainer p2pInterfaces;
   p2pInterfaces = address.Assign (p2pDevices);
   serverAddress_1 = Address(p2pInterfaces.GetAddress (0));
+  cloudAddress = Address(p2pInterfaces.GetAddress(1));
+  std::cout << "cloud address is "<< int(cloudAddress.m_data) <<std::endl;
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
   Ipv4InterfaceContainer csmaInterfaces;
@@ -317,7 +319,7 @@ SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
 //////////////////////////////////////////////////////
 
   NS_LOG_INFO ("Create Applications.");
-//
+//Edge
 // Create a UdpEchoServer application on node one.
 //
   uint16_t port = 9;  // well-known echo port number
@@ -325,6 +327,16 @@ SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
   ApplicationContainer serverapps = server.Install (p2pNodes.Get (0));
   serverapps.Start (Seconds (1.0));
   serverapps.Stop (Seconds (10.0));
+
+
+//////////////////////////////////////////////////////
+//cloud
+  UdpEchoServerHelper cloud_server (port);
+  serverapps=sever.Install(p2pNodes.Get(1));
+  serverapps.Start(Seconds(10.5));
+  serverapps.Stop(Seconds(13.0)
+
+
 
 //
 // Create a UdpEchoClient application to send UDP datagrams from node zero to

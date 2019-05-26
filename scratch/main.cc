@@ -50,7 +50,7 @@ void SetCarInfo(char* str, short int car_id, short int speed, float p_x,
   {
     int len=0;
     char MT_BT=128+1;
-    int ML=17;
+    int ML=12;
     // char car_id=33;
     // short int speed=99;
     // float position_x=233.234;
@@ -74,7 +74,7 @@ void SetRoadInfo(char* str, uint8_t road_id, float a_x,
   {
     int len=0;
     char MT_BT=128+2;
-    int ML=16;
+    int ML=17;
     // char car_id=33;
     // short int speed=99;
     // float position_x=233.234;
@@ -121,7 +121,7 @@ void SetDocumentInfo(char* str, short int car_id, time_t start_time, time_t end_
   {
     int len=0;
     char MT_BT=128+3;
-    int ML=2+8+8+8+4+serve_num;
+    int ML=2+8+8+8+2+serve_num;
     // char car_id=33;
     // short int speed=99;
     // float position_x=233.234;
@@ -160,7 +160,7 @@ void SetDocSuccInfo(char* str, bool succ, uint8_t* ip)
     memcpy(&str[len],&ML,4);
     len+=4;
     memcpy(&str[len],&succ,1);
-    len+=2;
+    len+=1;
     for(int i=0;i<4;i++){
       memcpy(&str[len],&ip[i],1);
       len+=1;
@@ -181,7 +181,7 @@ void SetValidateSuccInfo(char* str, bool succ, uint8_t* ip)
     memcpy(&str[len],&ML,4);
     len+=4;
     memcpy(&str[len],&succ,1);
-    len+=2;
+    len+=1;
     for(int i=0;i<4;i++){
       memcpy(&str[len],&ip[i],1);
       len+=1;

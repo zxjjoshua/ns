@@ -3,40 +3,101 @@
 #include <vector>
 #include <stdlib.h>
 #include <string.h>
-
+#define cloud_ip "10.1.1.2"
  namespace ns3{
 Encourage::Encourage()
 {
 
 }
 
-void Encourage::EncourageDocument(Address ip, uint8_t* message)
+void Encourage::EncourageDocument(Address ip, uint8_t* message, Ptr<Socket> socket)
 {
-    uint8_t* send_buff=new uint8_t[100];
-    int len=strlen((char*)message);
-    std::cout <<len<<std::endl;
-    memcpy(send_buff,message,len);
+    // uint8_t* send_buff=new uint8_t[100];
+    // int len=strlen((char*)message);
+    // std::cout <<len<<std::endl;
+    // memcpy(send_buff,message,len);
     uint8_t* u_ip=ip.m_data;
 
     AddIp(message, u_ip, send_buff,&len);
     // AddPort(message,(short) port, send_buff, &len);
 
+    int len=std::strlen((char*)message);
+    Ptr<Packet> packet=Create<Packet> (message, len+1);
+    uint8_t ip[]=cloud_ip;
+    Address cloud(3,ip, 4);
+    socket->SendTo(packet, 0, cloud);
 
     //Communication::Send_To(send_buff,cloud_ip,cloud_port);
 
-    free(send_buff);
+    // free(send_buff);
 }
+
+
+void Encourage::EncourageValidate(Address ip, uint8_t* message, Ptr<Socket> socket){
+  AddIp(message, u_ip, send_buff,&len);
+
+  int len=std::strlen((char*)message);
+  Ptr<Packet> packet=Create<Packet> (message, len+1);
+  uint8_t ip[]=cloud_ip;
+  Address cloud(3,ip, std::strlen((char*)ip));
+  socket->SendTo(packet, 0, cloud);
+}
+
+void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> socket){
+  int len=std::strlen((char*)message);
+  std::cout <<"before len is "<<len<<std::endl;
+  uint8_t* ip=GetIp(message);
+  len=std::strlen((char*)message);
+  std::cout <<"after len is "<<len<<std::endl;
+
+  Ptr<Packet> packet=Create<Packet> (message, len+1);//packet
+  std::cout <<"ip is "<<ip<<std::endl;
+  Address cloud(3,ip, std::strlen((char*)ip));//ip
+  socket->SendTo(packet, 0, cloud);//send
+}
+
+uint8_t* Encourage::GetIp(uint8_t* message){
+  int len=0;
+  char MT_BT;
+  int ML;
+  uint8_t ip[4];
+  std::string ip_str="";
+  char* ip_c=new char[20];
+
+  memcpy(&MT_BT, &message[len++], 1);
+  memcpy(&ML, &message[len], 4);
+  len+=4;
+  len+=ML;
+  for(int i=0; i<4;i++){
+    memcpy(&ip[i], &message[len], 1);
+    len++;
+    // sprintf(ip_str[i],"%s",int(ip[i]));
+    ip_str=ip_str+std::to_string(int(ip[i]));
+    if(i<3){
+      ip_str=ip_str+".";
+    }
+  }
+  std::strcpy(ip_c,ip_str.c_str());
+
+  memset(message[len-4],'\0', 4);
+  return (uint8_t*)ip_c;
+
+
+
+}
+
+
 
 void Encourage::AddIp(uint8_t *message,uint8_t* ip, uint8_t *send_buff, int* len)
 {
-    char ip_4_c[4];
+    uint8_t ip_4_c[4];
     int ip_4[4];
     char* end;
     std::vector<std::string> ip_4_str= MessageClassifier::ip2int((char*)ip);
     for(int i=0;i<4;i++){
         sscanf(ip_4_str[i].c_str(),"%d",&ip_4[i]);
-        ip_4_c[i]=(char)(ip_4[i]);
-        std::cout<<ip_4_c[i]<<" and "<<((int(ip_4_c[i])+256)%256)<<std::endl;
+        ip_4_c[i]=(uint8_t)(ip_4[i]);
+        std::cout<<ip_4_c[i]<<" and "<<((int)ip_4_c[i])<<std::endl;
     }
 
     for(int i=0;i<4;i++){

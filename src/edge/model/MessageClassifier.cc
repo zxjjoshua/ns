@@ -52,14 +52,19 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
         case 2://基础设施上传道路信息 2
             RoadInfo::RoadInfoProceess(message, socket);
         case 3://激励记录信息上传 3
-            Encourage::EncourageDocument(from,message);
-            //激励验证信息上传 4
+            Encourage::EncourageDocument(from,message, socket);
+        case 4://激励验证信息上传 4
+            Encourage::EncourageValidate(from, message, socket);
             //车辆的道路请求信息 6
+
             //车载娱乐 7
             //云端道路信息表同步 8
             //道路拥堵警报 11
-            //激励记录成功返回信息 12
-            //激励验证成功返回信息 13
+        case 12://激励记录成功返回信息 12
+            Encourage::EncourageDocmentSucc(from, message, socket);
+
+        case 13://激励验证成功返回信息 13
+            Encourage::EncourageValidateSucc(from, message, socket);
 
         default:
             break;

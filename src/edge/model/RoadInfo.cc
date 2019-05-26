@@ -23,7 +23,7 @@ void RoadInfo::RoadInfoUpload(uint8_t* message, Ptr<Socket> socket){
   int len=std::strlen((char*)message);
   Ptr<Packet> packet=Create<Packet> (message, len+1);
   uint8_t ip[]=cloud_ip;
-  Address cloud(3,ip, 4);
+  Address cloud(3,ip, std::strlen((char*)ip));
   // printf("!!!!!!!!get address %s",to.m_data);
   // cloud.m_data=;
   std::cout <<"here here!!"<<std::endl;

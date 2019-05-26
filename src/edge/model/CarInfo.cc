@@ -132,7 +132,7 @@ car_info* CarInfo::CarInfoGet(uint8_t *car_id)
 bool CarInfo::CarInfoUpload(car_info* car, Ptr<Socket> socket){
   int len = 0;
   uint8_t value[100];
-  uint8_t carid[3];
+  // uint8_t carid[3];
   int message_len=11;
 
   // sprintf(carid, "%d",car->car_id);

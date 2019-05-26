@@ -14,7 +14,7 @@
 
 namespace ns3{
 typedef struct car_info{
-    uint8_t car_id;
+    short car_id;
     unsigned short int car_speed;
     float position_x;
     float position_y;

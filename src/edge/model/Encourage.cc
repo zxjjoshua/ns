@@ -56,6 +56,22 @@ void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> s
   socket->SendTo(packet, 0, cloud);//send
 }
 
+
+void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> socket){
+  int len=std::strlen((char*)message);
+  std::cout <<"before len is "<<len<<std::endl;
+  uint8_t* ip=GetIp(message);
+  len=std::strlen((char*)message);
+  std::cout <<"after len is "<<len<<std::endl;
+
+  Ptr<Packet> packet=Create<Packet> (message, len+1);//packet
+  std::cout <<"ip is "<<ip<<std::endl;
+  Address cloud(3,ip, std::strlen((char*)ip));//ip
+  socket->SendTo(packet, 0, cloud);//send
+}
+
+
+
 uint8_t* Encourage::GetIp(uint8_t* message){
   int len=0;
   char MT_BT;
@@ -78,8 +94,8 @@ uint8_t* Encourage::GetIp(uint8_t* message){
     }
   }
   std::strcpy(ip_c,ip_str.c_str());
-
-  memset(message[len-4],'\0', 4);
+  len-=4;
+  memset(message[len],'\0', 4);
   return (uint8_t*)ip_c;
 
 

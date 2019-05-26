@@ -10,7 +10,7 @@ void RoadInfo::RoadInfoProceess(uint8_t* message, Ptr<Socket> socket){
     //云端的包就直接存储并且广播
     //车辆端就直接进行道路信息获取，并且返回
     Road* road=RoadInfoParse(message);
-    std::cout <<"here here!!"<<std::endl;
+    //std::cout <<"here here!!"<<std::endl;
     RoadInfoSave(road);
     RoadInfoUpload(message, socket);
 }
@@ -26,6 +26,7 @@ void RoadInfo::RoadInfoUpload(uint8_t* message, Ptr<Socket> socket){
   Address cloud(3,ip, 4);
   // printf("!!!!!!!!get address %s",to.m_data);
   // cloud.m_data=;
+  std::cout <<"here here!!"<<std::endl;
   socket->SendTo(packet, 0, cloud);
 }
 

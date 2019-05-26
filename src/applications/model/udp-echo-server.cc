@@ -166,7 +166,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
       socket->GetSockName (localAddress);
       m_rxTrace (packet);
       m_rxTraceWithAddresses (packet, from, localAddress);
-	std::cout <<"in the while head"<<std::endl;
+	// std::cout <<"in the while head"<<std::endl;
       if (InetSocketAddress::IsMatchingType (from))
         {
           NS_LOG_INFO ("At time " << Simulator::Now ().GetSeconds () << "s server received " << packet->GetSize () << " bytes from " <<
@@ -187,7 +187,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
         //         NS_FATAL_ERROR ("Failed to bind socket");
         //       }
         //   }
-	std::cout <<"in the if"<<std::endl;
+	// std::cout <<"in the if"<<std::endl;
       }
       else if (Inet6SocketAddress::IsMatchingType (from))
         {
@@ -215,7 +215,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
       //                  Inet6SocketAddress::ConvertFrom (from).GetPort ());
       //   }
     }
-	std::cout <<"the end"<<std::endl;
+	// std::cout <<"the end"<<std::endl;
 }
 
 void UdpEchoServer::Send(Ptr<Packet> packet, Address to){

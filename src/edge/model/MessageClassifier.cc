@@ -51,13 +51,13 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
             break;
         case 2://基础设施上传道路信息 2
             RoadInfo::RoadInfoProceess(message, socket);
-		break;
+            break;
         case 3://激励记录信息上传 3
             Encourage::EncourageDocument(from,message, socket);
-		break;
+            break;
         case 4://激励验证信息上传 4
             Encourage::EncourageValidate(from, message, socket);
-		break;
+            break;
             //车辆的道路请求信息 6
 
             //车载娱乐 7
@@ -65,7 +65,7 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
             //道路拥堵警报 11
         case 12://激励记录成功返回信息 12
             Encourage::EncourageDocmentSucc(from, message, socket);
-		break;
+            break;
 
         case 13://激励验证成功返回信息 13
             Encourage::EncourageValidateSucc(from, message, socket);

@@ -31,9 +31,9 @@ UdpEchoServerHelper::UdpEchoServerHelper (uint16_t port)
   SetAttribute ("Port", UintegerValue (port));
 }
 
-void 
+void
 UdpEchoServerHelper::SetAttribute (
-  std::string name, 
+  std::string name,
   const AttributeValue &value)
 {
   m_factory.Set (name, value);
@@ -81,6 +81,9 @@ char* UdpEchoServerHelper::GetName(Ptr<Application> app){
   app->GetObject<UdpEchoServer>()->GetName ();
 }
 
+void UdpEchoServerHelper::SetCloud(Ptr<Application> app){
+  app->GetObject<UdpEchoServer>()->SetCloud(true);
+}
 
 
 UdpEchoClientHelper::UdpEchoClientHelper (Address address, uint16_t port)
@@ -96,9 +99,9 @@ UdpEchoClientHelper::UdpEchoClientHelper (Address address)
   SetAttribute ("RemoteAddress", AddressValue (address));
 }
 
-void 
+void
 UdpEchoClientHelper::SetAttribute (
-  std::string name, 
+  std::string name,
   const AttributeValue &value)
 {
   m_factory.Set (name, value);
@@ -167,4 +170,3 @@ char* UdpEchoClientHelper::GetName(Ptr<Application> app){
 
 
 } // namespace ns3
-

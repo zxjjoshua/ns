@@ -62,6 +62,7 @@ UdpEchoServer::GetTypeId (void)
 UdpEchoServer::UdpEchoServer ()
 {
   NS_LOG_FUNCTION (this);
+  is_could=false;
 }
 
 UdpEchoServer::~UdpEchoServer()
@@ -230,6 +231,10 @@ void UdpEchoServer::SetName(char* name){
 
 char* UdpEchoServer::GetName(void){
   return this->m_name;
+}
+
+void UdpEchoServer::SetCloud(bool k){
+  is_could=k;
 }
 
 

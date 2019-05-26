@@ -282,7 +282,8 @@ main (int argc, char *argv[])
   p2pInterfaces = address.Assign (p2pDevices);
   serverAddress_1 = Address(p2pInterfaces.GetAddress (0));
   cloudAddress = Address(p2pInterfaces.GetAddress(1));
-  std::cout << "cloud address is "<< InetSocketAddress::ConvertFrom (from).GetIpv4 () <<std::endl;
+  // std::cout << "cloud address is "<< InetSocketAddress::ConvertFrom (from).GetIpv4 () <<std::endl;
+  NS_LOG_INFO("cloud address is "<< InetSocketAddress::ConvertFrom (cloudAddress).GetIpv4 ());
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
   Ipv4InterfaceContainer csmaInterfaces;
@@ -335,7 +336,7 @@ SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
   UdpEchoServerHelper cloud_server (port);
   serverapps= cloud_server.Install(p2pNodes.Get(1));
   cloud_server.SetCloud(serverapps.Get(0));
-  
+
   serverapps.Start(Seconds(10.5));
   serverapps.Stop(Seconds(13.0));
 

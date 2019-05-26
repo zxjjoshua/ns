@@ -113,12 +113,22 @@ void Encourage::AddIp(uint8_t *message,uint8_t* ip, uint8_t *send_buff, int* len
     uint8_t ip_4_c[4];
     int ip_4[4];
     char* end;
+
+    //ML=ML+4
+    int temp_len=1;
+    int ML=*len+4;
+    memcpy(&message[temp_len],&ML, 4);
+
+
     std::vector<std::string> ip_4_str= MessageClassifier::ip2int((char*)ip);
     for(int i=0;i<4;i++){
         sscanf(ip_4_str[i].c_str(),"%d",&ip_4[i]);
         ip_4_c[i]=(uint8_t)(ip_4[i]);
         std::cout<<ip_4_c[i]<<" and "<<((int)ip_4_c[i])<<std::endl;
     }
+
+
+
 
     for(int i=0;i<4;i++){
         memcpy(&send_buff[*len],&ip_4_c[i], 1);

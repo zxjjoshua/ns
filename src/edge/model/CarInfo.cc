@@ -40,7 +40,7 @@ void CarInfo::CarInfoProcess(uint8_t* message, Ptr<Socket> socket){
 car_info* CarInfo::CarInfoParse(uint8_t* message){
     car_info* car=new car_info;//一定要先申明空间
     int len=0;
-    char carid;
+    short carid;
     char MT_BT;
     int ML;
 
@@ -49,7 +49,8 @@ car_info* CarInfo::CarInfoParse(uint8_t* message){
     std::cout << int(MT_BT)<<" and messagee is "<<ML<< std::endl;
     len+=4;
 
-    car->car_id=message[len++];
+    memcpy(&car->car_id, &message[len], 2);
+    len+=2;
 //    memcpy(&(car->car_id), &message[len++], 1);
 //    car->car_id=int(carid);
 
@@ -90,8 +91,8 @@ bool CarInfo::CarInfoSave(car_info *car){
 
 //    memcpy(&a[len],&c,strlen(c));
 //    len+=strlen(c);
-    memcpy(&value[len],&car->car_id,1);
-    len+=1;
+    memcpy(&value[len],&car->car_id,2);
+    len+=2;
 
     memcpy(&value[len],&car->car_speed,2);
     len+=2;
@@ -134,21 +135,22 @@ bool CarInfo::CarInfoUpload(car_info* car, Ptr<Socket> socket){
   uint8_t value[100];
   // uint8_t carid[3];
   int message_len=11;
+  char MT_BT=128+1;
+  int ML=12;
 
   // sprintf(carid, "%d",car->car_id);
 
-  memcpy(&value[len],&(car->car_id),1);
-  len++;
+  memcpy(&value[len],&(MT_BT),1);
+  len+=2;
 //    std::cout<<"in heere"<<carid << std::endl;
-
-  memcpy(&value[len],&message_len,4);
+  memcpy(&value[len],&ML,4);
   len+=4;
 
 
 //    memcpy(&a[len],&c,strlen(c));
 //    len+=strlen(c);
-  memcpy(&value[len],&car->car_id,1);
-  len+=1;
+  memcpy(&value[len],&car->car_id,2);
+  len+=2;
 
   memcpy(&value[len],&car->car_speed,2);
   len+=2;

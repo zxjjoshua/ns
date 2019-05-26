@@ -39,7 +39,7 @@ void Encourage::EncourageValidate(Address ip, uint8_t* message, Ptr<Socket> sock
   uint8_t* u_ip=ip.m_data;
   AddIp(message, u_ip, message,&len);
 
-  int len=std::strlen((char*)message);
+  len=std::strlen((char*)message);
   Ptr<Packet> packet=Create<Packet> (message, len+1);
   uint8_t to[20];
   std::strcpy((char*)to,cloud_ip);

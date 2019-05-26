@@ -197,7 +197,7 @@ main (int argc, char *argv[])
 // for selected modules; the below lines suggest how to do this
 //
 #if 1
-  LogComponentEnable ("UdpEchoExample", LOG_LEVEL_INFO);
+ // LogComponentEnable ("UdpEchoExample", LOG_LEVEL_INFO);
   LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_ALL);
   LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_ALL);
 #endif
@@ -282,7 +282,7 @@ main (int argc, char *argv[])
   p2pInterfaces = address.Assign (p2pDevices);
   serverAddress_1 = Address(p2pInterfaces.GetAddress (0));
   cloudAddress = Address(p2pInterfaces.GetAddress(1));
-  NS_LOG_INFO("the address is "<<cloudAddress.m_data); 
+  std::cout << "cloud address is "<< InetSocketAddress::ConvertFrom (from).GetIpv4 () <<std::endl;
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
   Ipv4InterfaceContainer csmaInterfaces;
@@ -333,9 +333,9 @@ SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
 //////////////////////////////////////////////////////
 //cloud
   UdpEchoServerHelper cloud_server (port);
-  cloud_server.SetCloud(serverapps.Get(0));
-
   serverapps= cloud_server.Install(p2pNodes.Get(1));
+  cloud_server.SetCloud(serverapps.Get(0));
+  
   serverapps.Start(Seconds(10.5));
   serverapps.Stop(Seconds(13.0));
 

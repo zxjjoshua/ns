@@ -142,7 +142,7 @@ void SetDocumentInfo(char* str, short int car_id, time_t start_time,
     memcpy(&str[len],&serve_num,2);
     len+=2;
     for(int i=0;i<serve_num;i++){
-      memcpy(&str[len],&(*(car_id_list[i])),2);
+      memcpy(&str[len],&(*car_id_list[i]),2);
       len+=2;
     }
 }

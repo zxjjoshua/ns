@@ -21,10 +21,10 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message, Ptr<Socket> sock
     AddIp(message, u_ip, message,&len);
     // AddPort(message,(short) port, send_buff, &len);
 
-    int len=std::strlen((char*)message);
+    len=std::strlen((char*)message);
     Ptr<Packet> packet=Create<Packet> (message, len+1);
-    uint8_t ip[20]=cloud_ip;
-    Address cloud(3,ip, 4);
+    uint8_t ip[20];
+    std::strcpy(ip,cloud_ip);
     socket->SendTo(packet, 0, cloud);
 
     //Communication::Send_To(send_buff,cloud_ip,cloud_port);
@@ -35,11 +35,12 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message, Ptr<Socket> sock
 
 void Encourage::EncourageValidate(Address ip, uint8_t* message, Ptr<Socket> socket){
   int len=strlen((char*)message);
-  AddIp(message, u_ip, message,&len);
+  AddIp(message, ip, message,&len);
 
   int len=std::strlen((char*)message);
   Ptr<Packet> packet=Create<Packet> (message, len+1);
-  uint8_t ip[20]=cloud_ip;
+  uint8_t ip[20];
+  std::strcpy(ip,cloud_ip);
   Address cloud(3,ip, std::strlen((char*)ip));
   socket->SendTo(packet, 0, cloud);
 }

@@ -14,7 +14,7 @@ public:
     static void EncourageDocument(Address ip, uint8_t* message, Ptr<Socket> socket);
     static void EncourageValidate(Address ip, uint8_t* message, Ptr<Socket> socket);
     static void EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> socket);
-    static void EncourageValidateSucc(Address* ip, uint8_t* message, Ptr<Socket> socket);
+    static void EncourageValidateSucc(Address ip, uint8_t* message, Ptr<Socket> socket);
 
     static void AddIp(uint8_t* message, uint8_t *ip, uint8_t* send_buff, int *len);
     static uint8_t* GetIp(uint8_t* message);

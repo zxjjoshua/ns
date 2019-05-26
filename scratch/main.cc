@@ -36,6 +36,7 @@
 #include "ns3/internet-module.h"
 #include "ns3/point-to-point-module.h"
 #include "ns3/ipv4-global-routing-helper.h"
+#include <time.h>
 //#include <hiredis/hiredis.h>
 //#include "ns3/DataBase.h"
 
@@ -44,11 +45,35 @@ using namespace ns3;
 NS_LOG_COMPONENT_DEFINE ("UdpEchoExample");
 
 
-void SetCarInfo(char* str, uint8_t car_id, short int speed, float p_x,
+void SetCarInfo(char* str, short int car_id, short int speed, float p_x,
   float p_y)
   {
     int len=0;
     char MT_BT=128+1;
+    int ML=17;
+    // char car_id=33;
+    // short int speed=99;
+    // float position_x=233.234;
+    // float position_y=32.2216;
+    memcpy(&str[len],&MT_BT,1);
+    len++;
+    memcpy(&str[len],&ML,4);
+    len+=4;
+    memcpy(&str[len],&car_id,2);
+    len+=2;
+    memcpy(&str[len],&speed,2);
+    len+=2;
+    memcpy(&str[len],&p_x,4);
+    len+=4;
+    memcpy(&str[len],&p_y,4);
+    len+=4;
+}
+
+void SetRoadInfo(char* str, uint8_t road_id, float a_x,
+  float a_y, float b_x, float b_y, bool avalable)
+  {
+    int len=0;
+    char MT_BT=128+2;
     int ML=16;
     // char car_id=33;
     // short int speed=99;
@@ -58,14 +83,111 @@ void SetCarInfo(char* str, uint8_t car_id, short int speed, float p_x,
     len++;
     memcpy(&str[len],&ML,4);
     len+=4;
-    memcpy(&str[len],&car_id,1);
+    memcpy(&str[len],&road_id,1);
     len+=1;
-    memcpy(&str[len],&speed,2);
+    memcpy(&str[len],&a_x,4);
+    len+=4;
+    memcpy(&str[len],&a_y,4);
+    len+=4;
+    memcpy(&str[len],&b_x,4);
+    len+=4;
+    memcpy(&str[len],&b_y,4);
+    len+=4;
+    memcpy(&str[len],&avalable,1);
+    len+=1;
+}
+
+
+void SetValidateInfo(char* str, short int car_id, short int point)
+  {
+    int len=0;
+    char MT_BT=128+4;
+    int ML=4;
+    // char car_id=33;
+    // short int speed=99;
+    // float position_x=233.234;
+    // float position_y=32.2216;
+    memcpy(&str[len],&MT_BT,1);
+    len++;
+    memcpy(&str[len],&ML,4);
+    len+=4;
+    memcpy(&str[len],&car_id,2);
     len+=2;
-    memcpy(&str[len],&p_x,4);
+    memcpy(&str[len],&point,2);
+    len+=2;
+}
+
+void SetDocumentInfo(char* str, short int car_id, time_t start_time,
+  time_t end_time, time_t serve_time, short int serve_num,
+  (short int)* car_id_list)
+  {
+    int len=0;
+    char MT_BT=128+3;
+    int ML=2+8+8+8+4+serve_num;
+    // char car_id=33;
+    // short int speed=99;
+    // float position_x=233.234;
+    // float position_y=32.2216;
+    memcpy(&str[len],&MT_BT,1);
+    len++;
+    memcpy(&str[len],&ML,4);
     len+=4;
-    memcpy(&str[len],&p_y,4);
+    memcpy(&str[len],&car_id,2);
+    len+=2;
+    memcpy(&str[len],&start_time,8);
+    len+=8;
+    memcpy(&str[len],&end_time,8);
+    len+=8;
+    memcpy(&str[len],&serve_time,8);
+    len+=8;
+    memcpy(&str[len],&serve_num,2);
+    len+=2;
+    for(int i=0;i<serve_num;i++){
+      memcpy(&str[len],&(*(car_id_list[i])),2);
+      len+=2;
+    }
+}
+
+void SetDocSuccInfo(char* str, bool succ, uint8_t* ip)
+  {
+    int len=0;
+    char MT_BT=128+12;
+    int ML=5;
+    // char car_id=33;
+    // short int speed=99;
+    // float position_x=233.234;
+    // float position_y=32.2216;
+    memcpy(&str[len],&MT_BT,1);
+    len++;
+    memcpy(&str[len],&ML,4);
     len+=4;
+    memcpy(&str[len],&succ,1);
+    len+=2;
+    for(int i=0;i<4;i++){
+      memcpy(&str[len],&ip[i],1);
+      len+=1;
+    }
+}
+
+void SetValidateSuccInfo(char* str, bool succ, uint8_t* ip)
+  {
+    int len=0;
+    char MT_BT=128+12;
+    int ML=5;
+    // char car_id=33;
+    // short int speed=99;
+    // float position_x=233.234;
+    // float position_y=32.2216;
+    memcpy(&str[len],&MT_BT,1);
+    len++;
+    memcpy(&str[len],&ML,4);
+    len+=4;
+    memcpy(&str[len],&succ,1);
+    len+=2;
+    for(int i=0;i<4;i++){
+      memcpy(&str[len],&ip[i],1);
+      len+=1;
+    }
 }
 
 
@@ -175,10 +297,15 @@ char str3[100];
 char str4[100];
 
 
-SetCarInfo(str1, 1, 30, 23.23, 43.232);
-SetCarInfo(str2, 2, 40, 233.23, 3.232);
-SetCarInfo(str3, 3, 40, 43.2, 34.232);
-SetCarInfo(str4, 4, 30, 11.53, 23.232);
+// SetCarInfo(str1, 1, 30, 23.23, 43.232);
+// SetCarInfo(str2, 2, 40, 233.23, 3.232);
+// SetCarInfo(str3, 3, 40, 43.2, 34.232);
+// SetCarInfo(str4, 4, 30, 11.53, 23.232);
+
+SetRoadInfo(str1, 1, 1.23, 3.34, 2.34, 5.34, true);
+SetRoadInfo(str2, 2, 32.32, 33.22, 4.34, 45.6, true);
+SetRoadInfo(str3, 3, 23.1, 23.44, 13.234, 443.2, true);
+SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
 
 
 

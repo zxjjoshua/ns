@@ -23,8 +23,9 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message, Ptr<Socket> sock
 
     len=std::strlen((char*)message);
     Ptr<Packet> packet=Create<Packet> (message, len+1);
-    uint8_t ip[20];
-    std::strcpy(ip,cloud_ip);
+    uint8_t to[20];
+    std::strcpy((char*)to,cloud_ip);
+    Address cloud(3,to, std::strlen((char*)to));
     socket->SendTo(packet, 0, cloud);
 
     //Communication::Send_To(send_buff,cloud_ip,cloud_port);
@@ -35,26 +36,27 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message, Ptr<Socket> sock
 
 void Encourage::EncourageValidate(Address ip, uint8_t* message, Ptr<Socket> socket){
   int len=strlen((char*)message);
-  AddIp(message, ip, message,&len);
+  uint8_t* u_ip=ip.m_data;
+  AddIp(message, u_ip, message,&len);
 
   int len=std::strlen((char*)message);
   Ptr<Packet> packet=Create<Packet> (message, len+1);
-  uint8_t ip[20];
-  std::strcpy(ip,cloud_ip);
-  Address cloud(3,ip, std::strlen((char*)ip));
+  uint8_t to[20];
+  std::strcpy((char*)to,cloud_ip);
+  Address cloud(3,to, std::strlen((char*)to));
   socket->SendTo(packet, 0, cloud);
 }
 
 void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> socket){
   int len=std::strlen((char*)message);
   std::cout <<"before len is "<<len<<std::endl;
-  uint8_t* ip=GetIp(message);
+  uint8_t* to=GetIp(message);
   len=std::strlen((char*)message);
   std::cout <<"after len is "<<len<<std::endl;
 
   Ptr<Packet> packet=Create<Packet> (message, len+1);//packet
-  std::cout <<"ip is "<<ip<<std::endl;
-  Address cloud(3,ip, std::strlen((char*)ip));//ip
+  std::cout <<"ip is "<<to<<std::endl;
+  Address cloud(3,to, std::strlen((char*)to));//ip
   socket->SendTo(packet, 0, cloud);//send
 }
 
@@ -62,13 +64,13 @@ void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> s
 void Encourage::EncourageValidateSucc(Address ip, uint8_t* message, Ptr<Socket> socket){
   int len=std::strlen((char*)message);
   std::cout <<"before len is "<<len<<std::endl;
-  uint8_t* ip=GetIp(message);
+  uint8_t* to=GetIp(message);
   len=std::strlen((char*)message);
   std::cout <<"after len is "<<len<<std::endl;
 
   Ptr<Packet> packet=Create<Packet> (message, len+1);//packet
-  std::cout <<"ip is "<<ip<<std::endl;
-  Address cloud(3,ip, std::strlen((char*)ip));//ip
+  std::cout <<"ip is "<<to<<std::endl;
+  Address cloud(3,to, std::strlen((char*)to));//ip
   socket->SendTo(packet, 0, cloud);//send
 }
 

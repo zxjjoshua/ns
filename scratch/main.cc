@@ -333,7 +333,7 @@ SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
 //////////////////////////////////////////////////////
 //cloud
   UdpEchoServerHelper cloud_server (port);
-  cloud_server.SetCloud(serverapps.get(0));
+  cloud_server.SetCloud(serverapps.Get(0));
 
   serverapps= cloud_server.Install(p2pNodes.Get(1));
   serverapps.Start(Seconds(10.5));

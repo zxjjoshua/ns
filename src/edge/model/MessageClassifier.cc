@@ -62,7 +62,9 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
 
             //车载娱乐 7
             //云端道路信息表同步 8
-            //道路拥堵警报 11
+
+        case 11://道路拥堵警报 11
+            RoadInfo::RoadAlert(from, message, socket);
         case 12://激励记录成功返回信息 12
             Encourage::EncourageDocmentSucc(from, message, socket);
             break;

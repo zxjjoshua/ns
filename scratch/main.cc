@@ -197,7 +197,7 @@ main (int argc, char *argv[])
 // for selected modules; the below lines suggest how to do this
 //
 #if 1
-  LogComponentEnable ("UdpEchoExample", LOG_LEVEL_INFO);
+ // LogComponentEnable ("UdpEchoExample", LOG_LEVEL_INFO);
   LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_ALL);
   LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_ALL);
 #endif
@@ -283,14 +283,14 @@ main (int argc, char *argv[])
   serverAddress_1 = Address(p2pInterfaces.GetAddress (0));
   cloudAddress = Address(p2pInterfaces.GetAddress(1));
   // std::cout << "cloud address is "<< InetSocketAddress::ConvertFrom (from).GetIpv4 () <<std::endl;
-  NS_LOG_INFO("cloud address is "<< cloudAddress.m_data);
+  NS_LOG_INFO("cloud address is "<< InetSocketAddress::ConvertFrom (cloudAddress).GetIpv4 ());
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
   Ipv4InterfaceContainer csmaInterfaces;
   csmaInterfaces = address.Assign (csmaDevices);
   serverAddress_2 = Address(csmaInterfaces.GetAddress (0));
-  std::cout<<"the type is "<<int(serverAddress_1.m_type)<<" and its len !!"<<int(serverAddress_1.m_len)<<std::endl;
-  std::cout<<"the type is "<<int(serverAddress_2.m_type)<<" and its len !!"<<int(serverAddress_2.m_len)<<std::endl;
+  // std::cout<<"the type is "<<int(serverAddress_1.m_type)<<" and its len !!"<<int(serverAddress_1.m_len)<<std::endl;
+  // std::cout<<"the type is "<<int(serverAddress_2.m_type)<<" and its len !!"<<int(serverAddress_2.m_len)<<std::endl;
 //////////////////////////////////////////////////////
 //create multiple meessages to send
 char str1[100];

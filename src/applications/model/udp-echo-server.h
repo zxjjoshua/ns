@@ -57,10 +57,10 @@ public:
   char m_name[10];
 
   void Send(Ptr<Packet> packet, Address to);
-protected:
+
   virtual void DoDispose (void);
 
-private:
+
 
   virtual void StartApplication (void);
   virtual void StopApplication (void);

@@ -210,6 +210,7 @@ main (int argc, char *argv[])
   bool useV6 = false;
   Address serverAddress_1;
   Address serverAddress_2;
+  Address cloudAddress
 
   CommandLine cmd;
   cmd.AddValue ("useIpv6", "Use Ipv6", useV6);
@@ -334,7 +335,7 @@ SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
   UdpEchoServerHelper cloud_server (port);
   serverapps= cloud_server.Install(p2pNodes.Get(1));
   serverapps.Start(Seconds(10.5));
-  serverapps.Stop(Seconds(13.0)
+  serverapps.Stop(Seconds(13.0));
 
 
 

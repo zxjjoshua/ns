@@ -118,8 +118,7 @@ void SetValidateInfo(char* str, short int car_id, short int point)
 }
 
 void SetDocumentInfo(char* str, short int car_id, time_t start_time,
-  time_t end_time, time_t serve_time, short int serve_num,
-  (short int)* car_id_list)
+  time_t end_time, time_t serve_time, short int serve_num,short* car_id_list)
   {
     int len=0;
     char MT_BT=128+3;

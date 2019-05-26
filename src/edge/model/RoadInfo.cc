@@ -31,6 +31,38 @@ void RoadInfo::RoadInfoUpload(uint8_t* message, Ptr<Socket> socket){
   socket->SendTo(packet, 0, cloud);
 }
 
+void RoadInfo::RoadAlert(Address from, uint8_t* message, Ptr<Socket> socket){
+  int len=std::strlen((char*)message);
+  Ptr<Packet> packet=Create<Packet> (message, len+1);
+  uint8_t ip[]="0.0.0.0";
+  Address broadcast(3,ip, std::strlen((char*)ip));
+  // printf("!!!!!!!!get address %s",to.m_data);
+  // cloud.m_data=;
+  std::cout <<"here here!!"<<std::endl;
+  socket->SendTo(packet, 0, broadcast);
+}
+
+void RoadInfo::AlertParse(uint8_t* message){
+  int len=0;
+  char MT_BT;
+  int ML;
+  float a_x, a_y, b_x, b_y;
+  memcpy(&MT_BT, &message[len++], 1);
+  memcpy(&ML, &message[len], 4);
+  len+=4;
+
+
+  memcpy(&a_x, &message[len], 4);
+  len+=4;
+  memcpy(&a_y, &message[len], 4);
+  len+=4;
+  memcpy(&b_x, &message[len], 4);
+  len+=4;
+  memcpy(&b_y, &message[len], 4);
+  len+=4;
+
+}
+
 
 Road* RoadInfo::RoadInfoParse(uint8_t* message){
   Road* road=new Road;

@@ -467,8 +467,8 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
   NS_LOG_FUNCTION (this << socket);
   Ptr<Packet> packet;
   Address from;
-  Address localAddress<<"client get somth"<<std::endl;
-  std::cout
+  Address localAddress;
+  std::cout<<"client get somth"<<std::endl;
   while ((packet = socket->RecvFrom (from)))
     {
       if (InetSocketAddress::IsMatchingType (from))

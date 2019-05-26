@@ -177,7 +177,13 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
     //packet->Output(packet->GetSize());
         uint8_t* content= packet->GetContent(packet->GetSize());
         NS_LOG_INFO("this is what seerver get" <<content);
-	       MessageClassifier::Router(content, from, socket);
+	       if(is_could){
+           std::cout <<"this is cloud server"<<endl;
+         }
+         else{
+           MessageClassifier::Router(content, from, socket);
+         }
+
         // if (socket == 0)
         //   {
         //     TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");

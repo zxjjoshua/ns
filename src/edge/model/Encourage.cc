@@ -13,17 +13,17 @@ Encourage::Encourage()
 void Encourage::EncourageDocument(Address ip, uint8_t* message, Ptr<Socket> socket)
 {
     // uint8_t* send_buff=new uint8_t[100];
-    // int len=strlen((char*)message);
+    int len=strlen((char*)message);
     // std::cout <<len<<std::endl;
     // memcpy(send_buff,message,len);
     uint8_t* u_ip=ip.m_data;
 
-    AddIp(message, u_ip, send_buff,&len);
+    AddIp(message, u_ip, message,&len);
     // AddPort(message,(short) port, send_buff, &len);
 
     int len=std::strlen((char*)message);
     Ptr<Packet> packet=Create<Packet> (message, len+1);
-    uint8_t ip[]=cloud_ip;
+    uint8_t ip[20]=cloud_ip;
     Address cloud(3,ip, 4);
     socket->SendTo(packet, 0, cloud);
 
@@ -34,11 +34,12 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message, Ptr<Socket> sock
 
 
 void Encourage::EncourageValidate(Address ip, uint8_t* message, Ptr<Socket> socket){
-  AddIp(message, u_ip, send_buff,&len);
+  int len=strlen((char*)message);
+  AddIp(message, u_ip, message,&len);
 
   int len=std::strlen((char*)message);
   Ptr<Packet> packet=Create<Packet> (message, len+1);
-  uint8_t ip[]=cloud_ip;
+  uint8_t ip[20]=cloud_ip;
   Address cloud(3,ip, std::strlen((char*)ip));
   socket->SendTo(packet, 0, cloud);
 }
@@ -57,7 +58,7 @@ void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> s
 }
 
 
-void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> socket){
+void Encourage::EncourageValidateSucc(Address ip, uint8_t* message, Ptr<Socket> socket){
   int len=std::strlen((char*)message);
   std::cout <<"before len is "<<len<<std::endl;
   uint8_t* ip=GetIp(message);
@@ -95,7 +96,7 @@ uint8_t* Encourage::GetIp(uint8_t* message){
   }
   std::strcpy(ip_c,ip_str.c_str());
   len-=4;
-  memset(message[len],'\0', 4);
+  memset(&message[len],'\0', 4);
   return (uint8_t*)ip_c;
 
 

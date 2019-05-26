@@ -282,7 +282,7 @@ main (int argc, char *argv[])
   p2pInterfaces = address.Assign (p2pDevices);
   serverAddress_1 = Address(p2pInterfaces.GetAddress (0));
   cloudAddress = Address(p2pInterfaces.GetAddress(1));
-  std::cout << "cloud address is "<< cloudAddress.m_data <<std::endl;
+  std::cout << "cloud address is "<< InetSocketAddress::ConvertFrom (cloudAddress).GetIpv4 () <<std::endl;
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
   Ipv4InterfaceContainer csmaInterfaces;

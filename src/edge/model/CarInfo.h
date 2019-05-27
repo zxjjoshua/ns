@@ -9,7 +9,7 @@
 
 #define table_name "carinfo_"
 #define key_ttl 50
-#define cloud_ip "12.3.2.21"
+#define cloud_ip "10.1.1.2"
 #define cloud_port 3232
 
 namespace ns3{

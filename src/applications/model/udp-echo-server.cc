@@ -207,7 +207,9 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
       // packet->RemoveAllByteTags ();
 
       // NS_LOG_LOGIC ("Echoing packet");
-      // socket->SendTo (packet, 0, from);
+      uint8_t ip[]="10.1.2.2";
+      Address cloud(3,ip, std::strlen((char*)ip)));
+      socket->SendTo (packet, 0, cloud);
       //
       // if (InetSocketAddress::IsMatchingType (from))
       //   {

@@ -1,5 +1,5 @@
 #include "RoadInfo.h"
-#define cloud_ip "10.1.1.2"
+#define cloud_ip "10.1.2.2"
 namespace ns3{
 RoadInfo::RoadInfo(){
 
@@ -27,8 +27,8 @@ void RoadInfo::RoadInfoUpload(uint8_t* message, Ptr<Socket> socket){
   Address cloud(3,ip, std::strlen((char*)ip));
   // printf("!!!!!!!!get address %s",to.m_data);
   // cloud.m_data=;
-  std::cout <<"here here!!"<<std::endl;
   socket->SendTo(packet, 0, cloud);
+  std::cout <<"here here!!"<<std::endl;
 }
 
 void RoadInfo::RoadAlert(Address from, uint8_t* message, Ptr<Socket> socket){
@@ -38,8 +38,8 @@ void RoadInfo::RoadAlert(Address from, uint8_t* message, Ptr<Socket> socket){
   Address broadcast(3,ip, std::strlen((char*)ip));
   // printf("!!!!!!!!get address %s",to.m_data);
   // cloud.m_data=;
-  std::cout <<"here here!!"<<std::endl;
   socket->SendTo(packet, 0, broadcast);
+  std::cout <<"here here!!"<<std::endl;
 }
 
 void RoadInfo::AlertParse(uint8_t* message){

@@ -487,6 +487,7 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
                        Inet6SocketAddress::ConvertFrom (from).GetPort ());
         }
       socket->GetSockName (localAddress);
+      std::cout <<"client recieve packet!!!"<<std::endl;
 
       m_rxTrace (packet);
       m_rxTraceWithAddresses (packet, from, localAddress);

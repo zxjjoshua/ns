@@ -74,6 +74,7 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
 		break;
 
         default:
+		std::cout << "not applicable info, discard"<<std::endl;
             break;
         }
 

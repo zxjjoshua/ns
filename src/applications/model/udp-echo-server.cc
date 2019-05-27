@@ -167,7 +167,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
       socket->GetSockName (localAddress);
       m_rxTrace (packet);
       m_rxTraceWithAddresses (packet, from, localAddress);
-	// std::cout <<"in the while head"<<std::endl;
+	 std::cout <<"in the while head"<<std::endl;
       if (InetSocketAddress::IsMatchingType (from))
         {
           NS_LOG_INFO ("At time " << Simulator::Now ().GetSeconds () << "s server received " << packet->GetSize () << " bytes from " <<

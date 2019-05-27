@@ -299,15 +299,15 @@ char str3[100];
 char str4[100];
 
 
-// SetCarInfo(str1, 1, 30, 23.23, 43.232);
-// SetCarInfo(str2, 2, 40, 233.23, 3.232);
-// SetCarInfo(str3, 3, 40, 43.2, 34.232);
-// SetCarInfo(str4, 4, 30, 11.53, 23.232);
+ SetCarInfo(str1, 1, 30, 23.23, 43.232);
+ SetCarInfo(str2, 2, 40, 233.23, 3.232);
+ SetCarInfo(str3, 3, 40, 43.2, 34.232);
+ SetCarInfo(str4, 4, 30, 11.53, 23.232);
 
-SetRoadInfo(str1, 1, 1.23, 3.34, 2.34, 5.34, true);
-SetRoadInfo(str2, 2, 32.32, 33.22, 4.34, 45.6, true);
-SetRoadInfo(str3, 3, 23.1, 23.44, 13.234, 443.2, true);
-SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
+//SetRoadInfo(str1, 1, 1.23, 3.34, 2.34, 5.34, true);
+//SetRoadInfo(str2, 2, 32.32, 33.22, 4.34, 45.6, true);
+//SetRoadInfo(str3, 3, 23.1, 23.44, 13.234, 443.2, true);
+//SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
 
 
 

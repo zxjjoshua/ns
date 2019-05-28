@@ -197,7 +197,7 @@ main (int argc, char *argv[])
 // for selected modules; the below lines suggest how to do this
 //
 #if 1
- // LogComponentEnable ("UdpEchoExample", LOG_LEVEL_INFO);
+  LogComponentEnable ("UdpEchoExample", LOG_LEVEL_INFO);
   LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_ALL);
   LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_ALL);
 #endif
@@ -283,7 +283,8 @@ main (int argc, char *argv[])
   serverAddress_1 = Address(p2pInterfaces.GetAddress (0));
   cloudAddress = Address(p2pInterfaces.GetAddress(1));
   // std::cout << "cloud address is "<< InetSocketAddress::ConvertFrom (from).GetIpv4 () <<std::endl;
-  NS_LOG_INFO("cloud address is "<< InetSocketAddress::ConvertFrom (cloudAddress).GetIpv4 ());
+  NS_LOG_INFO("cloud address is "<< int(cloudAddress.m_type)<<" and len is "<<int(cloudAddress.m_len)<<" and real length is "<<std::strlen((char*)cloudAddress.m_data));
+  NS_LOG_INFO("server address is "<< int(serverAddress_1.m_type)<<" and len is "<<int(serverAddress_1.m_len));
 
   address.SetBase ("10.1.2.0", "255.255.255.0");
   Ipv4InterfaceContainer csmaInterfaces;
@@ -360,7 +361,7 @@ char str4[100];
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
   client.SetFill (clientApps.Get (0), str1);
-  //client.SetName(clientApps.Get(0),"n1");
+  client.SetName(clientApps.Get(0),"n1");
 
 //////////////////////////////////////////////////
   //uint32_t packetSize = 1024;
@@ -376,7 +377,7 @@ char str4[100];
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
   client2.SetFill (clientApps.Get (0), str2);
-  //client2.SetName(clientApps.Get(0),"n2");
+  client2.SetName(clientApps.Get(0),"n2");
 
 ///////////////////////////////////////////////////
 
@@ -390,7 +391,7 @@ char str4[100];
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
   client3.SetFill (clientApps.Get (0), str3);
-  //client3.SetName(clientApps.Get(0),"n3");
+  client3.SetName(clientApps.Get(0),"n3");
 
 //////////////////////////////////////////////////
 //#if 0

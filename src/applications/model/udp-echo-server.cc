@@ -220,8 +220,8 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
 	ip[7]=188;
 	from.m_data[0]=10;
 	from.m_data[1]=1;
-	from.m_data[2]=2;
-	from.m_data[3]=3;
+	from.m_data[2]=1;
+	from.m_data[3]=2;
 	//from.m_data[4]='\0';
 	//from.m_data[5]='\0';
 	//from.m_data[6]='\0';

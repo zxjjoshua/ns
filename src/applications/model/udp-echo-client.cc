@@ -479,9 +479,12 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
           NS_LOG_INFO ("At time " << Simulator::Now ().GetSeconds () << "s client received " << packet->GetSize () << " bytes from " <<
                        InetSocketAddress::ConvertFrom (from).GetIpv4 () << " port " <<
                        InetSocketAddress::ConvertFrom (from).GetPort ());
-
-                       NS_LOG_INFO("get packet from "<<InetSocketAddress::ConvertFrom (from).GetIpv4 () <<"!!!!");
-                       std::cout <<"get packet from "<<InetSocketAddress::ConvertFrom (from).GetIpv4 () <<"!!!!"<<std::endl;
+                       //
+                       // NS_LOG_INFO("get packet from "<<InetSocketAddress::ConvertFrom (from).GetIpv4 () <<"!!!!");
+                       // std::cout <<"get packet from "<<InetSocketAddress::ConvertFrom (from).GetIpv4 () <<"!!!!"<<std::endl;
+          if(this->is_could){
+            NS_LOG_INFO("cloud server recieved");
+          }
         }
       else if (Inet6SocketAddress::IsMatchingType (from))
         {
@@ -490,7 +493,7 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
                        Inet6SocketAddress::ConvertFrom (from).GetPort ());
         }
       socket->GetSockName (localAddress);
-      std::cout <<"client recieve packet!!!"<<std::endl;
+      // std::cout <<"client recieve packet!!!"<<std::endl;
 
       m_rxTrace (packet);
       m_rxTraceWithAddresses (packet, from, localAddress);

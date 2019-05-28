@@ -339,16 +339,16 @@ char str4[100];
 
 //////////////////////////////////////////////////////
 //cloud
-  UdpEchoClientHelper cloud_server (serverAddress_1,port);
+  UdpEchoClientHelper cloud_server (serverAddress_1, port);
   serverapps= cloud_server.Install(csmaNodes.Get(nCsma));
   cloud_server.SetCloud(serverapps.Get(0));
-  cloud_server.SetAttribute ("MaxPackets", UintegerValue (1));
-  cloud_server.SetAttribute ("Interval", TimeValue (Seconds (0.5)));
+  cloud_server.SetAttribute ("MaxPackets", UintegerValue (0));
+  cloud_server.SetAttribute ("Interval", TimeValue (Seconds (10)));
   cloud_server.SetAttribute ("PacketSize", UintegerValue (1));
   cloud_server.SetName(serverapps.Get(0),"cloud");
 
   serverapps.Start(Seconds(2));
-  serverapps.Stop(Seconds(13.0));
+  serverapps.Stop(Seconds(10.0));
 
 
 

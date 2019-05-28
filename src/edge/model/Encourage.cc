@@ -23,10 +23,11 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message, Ptr<Socket> sock
 
     len=std::strlen((char*)message);
     Ptr<Packet> packet=Create<Packet> (message, len+1);
-    uint8_t to[20];
-    std::strcpy((char*)to,cloud_ip);
-    Address cloud(3,to, std::strlen((char*)to));
-    socket->SendTo(packet, 0, cloud);
+    from.m_data[0]=10;
+    from.m_data[1]=1;
+    from.m_data[2]=1;
+    from.m_data[3]=2;
+    socket->SendTo(packet, 0, from);
 
     //Communication::Send_To(send_buff,cloud_ip,cloud_port);
 
@@ -41,10 +42,11 @@ void Encourage::EncourageValidate(Address ip, uint8_t* message, Ptr<Socket> sock
 
   len=std::strlen((char*)message);
   Ptr<Packet> packet=Create<Packet> (message, len+1);
-  uint8_t to[20];
-  std::strcpy((char*)to,cloud_ip);
-  Address cloud(3,to, std::strlen((char*)to));
-  socket->SendTo(packet, 0, cloud);
+  from.m_data[0]=10;
+  from.m_data[1]=1;
+  from.m_data[2]=1;
+  from.m_data[3]=2;
+  socket->SendTo(packet, 0, from);
 }
 
 void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> socket){
@@ -55,9 +57,13 @@ void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> s
   std::cout <<"after len is "<<len<<std::endl;
 
   Ptr<Packet> packet=Create<Packet> (message, len+1);//packet
-  std::cout <<"ip is "<<to<<std::endl;
+  // std::cout <<"ip is "<<to<<std::endl;
+  from.m_data[0]=to[0];
+  from.m_data[1]=to[1];
+  from.m_data[2]=to[2];
+  from.m_data[3]=to[3];
   Address cloud(3,to, std::strlen((char*)to));//ip
-  socket->SendTo(packet, 0, cloud);//send
+  socket->SendTo(packet, 0, from);//send
 }
 
 
@@ -69,9 +75,12 @@ void Encourage::EncourageValidateSucc(Address ip, uint8_t* message, Ptr<Socket> 
   std::cout <<"after len is "<<len<<std::endl;
 
   Ptr<Packet> packet=Create<Packet> (message, len+1);//packet
-  std::cout <<"ip is "<<to<<std::endl;
-  Address cloud(3,to, std::strlen((char*)to));//ip
-  socket->SendTo(packet, 0, cloud);//send
+  // std::cout <<"ip is "<<to<<std::endl;
+  from.m_data[0]=to[0];
+  from.m_data[1]=to[1];
+  from.m_data[2]=to[2];
+  from.m_data[3]=to[3];
+  socket->SendTo(packet, 0, from);//send
 }
 
 
@@ -80,9 +89,9 @@ uint8_t* Encourage::GetIp(uint8_t* message){
   int len=0;
   char MT_BT;
   int ML;
-  uint8_t ip[4];
+  uint8_t* ip=new uint8_t[4];
   std::string ip_str="";
-  char* ip_c=new char[20];
+  // char* ip_c=new char[20];
 
   memcpy(&MT_BT, &message[len++], 1);
   memcpy(&ML, &message[len], 4);
@@ -92,15 +101,15 @@ uint8_t* Encourage::GetIp(uint8_t* message){
     memcpy(&ip[i], &message[len], 1);
     len++;
     // sprintf(ip_str[i],"%s",int(ip[i]));
-    ip_str=ip_str+std::to_string(int(ip[i]));
-    if(i<3){
-      ip_str=ip_str+".";
-    }
+    // ip_str=ip_str+std::to_string(int(ip[i]));
+    // if(i<3){
+    //   ip_str=ip_str+".";
+    // }
   }
-  std::strcpy(ip_c,ip_str.c_str());
+  // std::strcpy(ip_c,ip_str.c_str());
   len-=4;
   memset(&message[len],'\0', 4);
-  return (uint8_t*)ip_c;
+  return ip;
 
 
 

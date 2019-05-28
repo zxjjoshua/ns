@@ -5,14 +5,14 @@ RoadInfo::RoadInfo(){
 
 }
 
-void RoadInfo::RoadInfoProceess(uint8_t* message, Ptr<Socket> socket){
+void RoadInfo::RoadInfoProceess(Address from, uint8_t* message, Ptr<Socket> socket){
     //区分是来自云端还是来自车辆
     //云端的包就直接存储并且广播
     //车辆端就直接进行道路信息获取，并且返回
     Road* road=RoadInfoParse(message);
     //std::cout <<"here here!!"<<std::endl;
     RoadInfoSave(road);
-    RoadInfoUpload(message, socket);
+    RoadInfoUpload(from, message, socket);
     std::cout <<"server oveer!!"<<std::endl;
 }
 
@@ -20,26 +20,27 @@ bool RoadInfo::RoadInfoSave(Road* car){
   return true;
 }
 
-void RoadInfo::RoadInfoUpload(uint8_t* message, Ptr<Socket> socket){
+void RoadInfo::RoadInfoUpload(Address from, uint8_t* message, Ptr<Socket> socket){
   int len=std::strlen((char*)message);
   Ptr<Packet> packet=Create<Packet> (message, len+1);
-  uint8_t ip[]=cloud_ip;
-  Address cloud(3,ip, std::strlen((char*)ip));
-  // printf("!!!!!!!!get address %s",to.m_data);
-  // cloud.m_data=;
-  socket->SendTo(packet, 0, cloud);
-  std::cout <<"here here!!"<<std::endl;
+  from.m_data[0]=10;
+  from.m_data[1]=1;
+  from.m_data[2]=1;
+  from.m_data[3]=1;
+  socket->SendTo(packet, 0, from);
 }
 
 void RoadInfo::RoadAlert(Address from, uint8_t* message, Ptr<Socket> socket){
   int len=std::strlen((char*)message);
   Ptr<Packet> packet=Create<Packet> (message, len+1);
-  uint8_t ip[]="0.0.0.0";
+  from.m_data[0]=255;
+  from.m_data[1]=255;
+  from.m_data[2]=255;
+  from.m_data[3]=255;
   Address broadcast(3,ip, std::strlen((char*)ip));
   // printf("!!!!!!!!get address %s",to.m_data);
   // cloud.m_data=;
-  socket->SendTo(packet, 0, broadcast);
-  std::cout <<"here here!!"<<std::endl;
+  socket->SendTo(packet, 0, from);
 }
 
 void RoadInfo::AlertParse(uint8_t* message){

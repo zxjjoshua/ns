@@ -130,7 +130,7 @@ car_info* CarInfo::CarInfoGet(uint8_t *car_id)
 
 
 //通过定义的云端ip，端口，直接从数据库将包取出，发送到云端
-bool CarInfo::CarInfoUpload(car_info* car, Ptr<Socket> socket){
+bool CarInfo::CarInfoUpload(Address from, car_info* car, Ptr<Socket> socket){
   int len = 0;
   uint8_t value[100];
   // uint8_t carid[3];
@@ -160,11 +160,13 @@ bool CarInfo::CarInfoUpload(car_info* car, Ptr<Socket> socket){
   len+=4;
 
   Ptr<Packet> packet=Create<Packet> (value, len+1);
-  uint8_t ip[]="10.1.2.2";
-  Address cloud(3,ip, 4);
+  from.m_data[0]=10;
+  from.m_data[1]=1;
+  from.m_data[2]=1;
+  from.m_data[3]=1;
   // printf("!!!!!!!!get address %s",to.m_data);
   // cloud.m_data=;
-  socket->SendTo(packet, 0, cloud);
+  socket->SendTo(packet, 0, from);
 
   //send
   return true;

@@ -351,7 +351,7 @@ UdpEchoClient::Send (void)
     }
   m_socket->Send (p);
   ++m_sent;
-  NS_LOG_INFO("i sent a message ");
+  NS_LOG_INFO(this->m_name<<" sent a message ");
 
   if (Ipv4Address::IsMatchingType (m_peerAddress))
     {

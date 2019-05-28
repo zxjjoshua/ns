@@ -47,10 +47,10 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
         std::cout<<"this is BT "<<BT<<std::endl;
         switch (BT) {
         case 1://车辆信息 1
-            CarInfo::CarInfoProcess(message, socket);
+            CarInfo::CarInfoProcess(from, message, socket);
             break;
         case 2://基础设施上传道路信息 2
-            RoadInfo::RoadInfoProceess(message, socket);
+            RoadInfo::RoadInfoProceess(from, message, socket);
             break;
         case 3://激励记录信息上传 3
             Encourage::EncourageDocument(from,message, socket);

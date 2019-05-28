@@ -10,6 +10,7 @@ DataBase::DataBase(){
     timeout.tv_usec=0;
 }
 
+
 int DataBase::AsynConnect(){
 //    pRedisAsyContext = redisAsyncConnect("127.0.0.1", 6379);
 //    if ( (NULL == pRedisAsyContext) || (pRedisAsyContext->err) )

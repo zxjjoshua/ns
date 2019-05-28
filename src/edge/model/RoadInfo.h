@@ -18,7 +18,7 @@ typedef struct Road{
 class RoadInfo{
 public:
     RoadInfo();
-    static void RoadInfoProceess(uint8_t* meessage, Ptr<Socket> socket);
+    static void RoadInfoProceess(Address from, uint8_t* meessage, Ptr<Socket> socket);
     static void RoadInfoReply(uint8_t* car_ip, int car_port);//used to serve customers, if the cars reequest for road info, the send back.
     static void RoadAlert(Address from, uint8_t* message, Ptr<Socket> socket);
     static void AlertParse(uint8_t* message);
@@ -26,7 +26,7 @@ private:
     static Road* RoadInfoParse(uint8_t* message);
     static bool RoadInfoSave(Road* car);
     static void RoadInfoBroadcast();// use broadcast tech to broad the meessage
-    static void RoadInfoUpload(uint8_t* message, Ptr<Socket> socket);
+    static void RoadInfoUpload(Address from, uint8_t* message, Ptr<Socket> socket);
 };
 
 }

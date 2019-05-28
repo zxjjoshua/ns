@@ -215,7 +215,7 @@ main (int argc, char *argv[])
   CommandLine cmd;
   cmd.AddValue ("useIpv6", "Use Ipv6", useV6);
   cmd.Parse (argc, argv);
-  uint32_t nCsma = 3;
+  uint32_t nCsma = 4;
 //
 // Explicitly create the nodes required by the topology (shown above).
 //
@@ -326,7 +326,7 @@ char str4[100];
 // Create a UdpEchoServer application on node one.
 //
   uint16_t port = 9;  // well-known echo port number
-  UdpEchoServerHelper server (port);
+  UdpEchoServerHelper server ( port);
   ApplicationContainer serverapps = server.Install (p2pNodes.Get (0));
   server.SetCloudServer(serverapps.Get(0), cloudAddress);
   serverapps.Start (Seconds (1.0));
@@ -339,11 +339,15 @@ char str4[100];
 
 //////////////////////////////////////////////////////
 //cloud
-  UdpEchoServerHelper cloud_server (port);
-  serverapps= cloud_server.Install(p2pNodes.Get(1));
+  UdpEchoClientHelper cloud_server (serverAddress_1,port);
+  serverapps= cloud_server.Install(csmaNodes.Get(nCsma));
   cloud_server.SetCloud(serverapps.Get(0));
+  cloud_server.SetAttribute ("MaxPackets", UintegerValue (1));
+  cloud_server.SetAttribute ("Interval", TimeValue (Seconds (0.5)));
+  cloud_server.SetAttribute ("PacketSize", UintegerValue (1));
+  cloud_server.SetName(serverapps.Get(0),"cloud");
 
-  serverapps.Start(Seconds(0.5));
+  serverapps.Start(Seconds(2));
   serverapps.Stop(Seconds(13.0));
 
 

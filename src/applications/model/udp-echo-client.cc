@@ -324,6 +324,23 @@ UdpEchoClient::Send (void)
       NS_ASSERT_MSG (m_dataSize == m_size, "UdpEchoClient::Send(): m_size and m_dataSize inconsistent");
       NS_ASSERT_MSG (m_data, "UdpEchoClient::Send(): m_dataSize but no m_data");
       p = Create<Packet> (m_data, m_dataSize);
+
+      Address localAddress;
+      m_socket->GetSockName (localAddress);
+      // call to the trace sinks before the packet is actually sent,
+      // so that tags added to the packet can be sent as well
+      m_txTrace (p);
+      if (Ipv4Address::IsMatchingType (m_peerAddress))
+        {
+          m_txTraceWithAddresses (p, localAddress, InetSocketAddress (Ipv4Address::ConvertFrom (m_peerAddress), m_peerPort));
+        }
+      else if (Ipv6Address::IsMatchingType (m_peerAddress))
+        {
+          m_txTraceWithAddresses (p, localAddress, Inet6SocketAddress (Ipv6Address::ConvertFrom (m_peerAddress), m_peerPort));
+        }
+      m_socket->Send (p);
+      ++m_sent;
+      NS_LOG_INFO(this->m_name<<" sent a message ");
     }
   else
     {
@@ -334,24 +351,9 @@ UdpEchoClient::Send (void)
       // this case, we don't worry about it either.  But we do allow m_size
       // to have a value different from the (zero) m_dataSize.
       //
-      // p = Create<Packet> (m_size);
+      p = Create<Packet> (m_size);
     }
-  Address localAddress;
-  m_socket->GetSockName (localAddress);
-  // call to the trace sinks before the packet is actually sent,
-  // so that tags added to the packet can be sent as well
-  m_txTrace (p);
-  if (Ipv4Address::IsMatchingType (m_peerAddress))
-    {
-      m_txTraceWithAddresses (p, localAddress, InetSocketAddress (Ipv4Address::ConvertFrom (m_peerAddress), m_peerPort));
-    }
-  else if (Ipv6Address::IsMatchingType (m_peerAddress))
-    {
-      m_txTraceWithAddresses (p, localAddress, Inet6SocketAddress (Ipv6Address::ConvertFrom (m_peerAddress), m_peerPort));
-    }
-  m_socket->Send (p);
-  ++m_sent;
-  NS_LOG_INFO(this->m_name<<" sent a message ");
+
 
   if (Ipv4Address::IsMatchingType (m_peerAddress))
     {

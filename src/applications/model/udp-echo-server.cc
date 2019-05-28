@@ -32,6 +32,7 @@
 #include "ns3/MessageClassifier.h"
 #include "udp-echo-server.h"
 #include <pthread.h>
+
 #define NUM_THREADS 10
 
 namespace ns3 {
@@ -65,6 +66,10 @@ UdpEchoServer::UdpEchoServer ()
 {
   NS_LOG_FUNCTION (this);
   is_could=false;
+  for(int i=0;i<MaxConnect;i++){
+    m_stack.push(i);
+  }
+
 }
 
 UdpEchoServer::~UdpEchoServer()
@@ -165,6 +170,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
   // Ptr<Socket> socket=0;
 
   pthread_t tids[NUM_THREADS];
+  int i=0;
   while ((packet = socket->RecvFrom (from)))
     {
       socket->GetSockName (localAddress);
@@ -184,12 +190,14 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
            std::cout <<"this is cloud server"<<std::endl;
          }
          else{
-           int ret = pthread_create(&tids[i], NULL, MessageClassifier::Router,(void)(*)&content, (void)(*)&from, (void)(*)&ocket);
-           if (ret != 0)
-          {
-             std::cout << "pthread_create error: error_code=" << ret << std::endl;
-          }
-           // MessageClassifier::Router(content, from, socket);
+           // int i=m_stack.(pop);
+           // int ret = pthread_create(&m_threads[i], NULL, MessageClassifier::Router,(void)(*)&content, (void)(*)&from, (void)(*)&ocket);
+          //  if (ret != 0)
+          // {
+          //    std::cout << "pthread_create error: error_code=" << ret << std::endl;
+          //    m_stack.push(i);
+          // }
+           MessageClassifier::Router(content, from, socket);
          }
 
         // if (socket == 0)

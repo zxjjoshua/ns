@@ -24,7 +24,8 @@
 #include "ns3/ptr.h"
 #include "ns3/address.h"
 #include "ns3/traced-callback.h"
-
+#include <stack>
+#define MaxConnect 10
 namespace ns3 {
 
 class Socket;
@@ -82,6 +83,8 @@ public:
   Address m_local; //!< local multicast address
   bool is_could;
   Address m_cloud;
+  stack<int> m_stack;
+  pthread_t m_threads[MaxConnect];
 
   /// Callbacks for tracing the packet Rx events
   TracedCallback<Ptr<const Packet> > m_rxTrace;

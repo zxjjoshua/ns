@@ -23,11 +23,11 @@ void Encourage::EncourageDocument(Address ip, uint8_t* message, Ptr<Socket> sock
 
     len=std::strlen((char*)message);
     Ptr<Packet> packet=Create<Packet> (message, len+1);
-    from.m_data[0]=10;
-    from.m_data[1]=1;
-    from.m_data[2]=1;
-    from.m_data[3]=2;
-    socket->SendTo(packet, 0, from);
+    ip.m_data[0]=10;
+    ip.m_data[1]=1;
+    ip.m_data[2]=1;
+    ip.m_data[3]=2;
+    socket->SendTo(packet, 0, ip);
 
     //Communication::Send_To(send_buff,cloud_ip,cloud_port);
 
@@ -42,11 +42,11 @@ void Encourage::EncourageValidate(Address ip, uint8_t* message, Ptr<Socket> sock
 
   len=std::strlen((char*)message);
   Ptr<Packet> packet=Create<Packet> (message, len+1);
-  from.m_data[0]=10;
-  from.m_data[1]=1;
-  from.m_data[2]=1;
-  from.m_data[3]=2;
-  socket->SendTo(packet, 0, from);
+  ip.m_data[0]=10;
+  ip.m_data[1]=1;
+  ip.m_data[2]=1;
+  ip.m_data[3]=2;
+  socket->SendTo(packet, 0, ip);
 }
 
 void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> socket){
@@ -58,12 +58,12 @@ void Encourage::EncourageDocmentSucc(Address ip, uint8_t* message, Ptr<Socket> s
 
   Ptr<Packet> packet=Create<Packet> (message, len+1);//packet
   // std::cout <<"ip is "<<to<<std::endl;
-  from.m_data[0]=to[0];
-  from.m_data[1]=to[1];
-  from.m_data[2]=to[2];
-  from.m_data[3]=to[3];
+  ip.m_data[0]=to[0];
+  ip.m_data[1]=to[1];
+  ip.m_data[2]=to[2];
+  ip.m_data[3]=to[3];
   Address cloud(3,to, std::strlen((char*)to));//ip
-  socket->SendTo(packet, 0, from);//send
+  socket->SendTo(packet, 0, ip);//send
 }
 
 
@@ -76,11 +76,11 @@ void Encourage::EncourageValidateSucc(Address ip, uint8_t* message, Ptr<Socket> 
 
   Ptr<Packet> packet=Create<Packet> (message, len+1);//packet
   // std::cout <<"ip is "<<to<<std::endl;
-  from.m_data[0]=to[0];
-  from.m_data[1]=to[1];
-  from.m_data[2]=to[2];
-  from.m_data[3]=to[3];
-  socket->SendTo(packet, 0, from);//send
+  ip.m_data[0]=to[0];
+  ip.m_data[1]=to[1];
+  ip.m_data[2]=to[2];
+  ip.m_data[3]=to[3];
+  socket->SendTo(packet, 0, ip);//send
 }
 
 

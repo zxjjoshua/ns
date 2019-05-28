@@ -172,5 +172,9 @@ char* UdpEchoClientHelper::GetName(Ptr<Application> app){
   app->GetObject<UdpEchoClient>()->GetName ();
 }
 
+void UdpEchoClientHelper::SetCloud(Ptr<Application> app){
+  app->GetObject<UdpEchoClient>()->SetCloud(true);
+}
+
 
 } // namespace ns3

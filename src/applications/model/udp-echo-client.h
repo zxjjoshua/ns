@@ -130,9 +130,11 @@ public:
    */
   void SetFill (uint8_t *fill, uint32_t fillSize, uint32_t dataSize);
   void SetName(char* name);
+  void SetCloud(bool k);
   char* GetName();
   void Sendto(Ptr<Packet> packet, Address to);
   char m_name[10];
+  bool is_could;
 protected:
   virtual void DoDispose (void);
 
@@ -178,6 +180,7 @@ private:
   Address m_peerAddress; //!< Remote peer address
   uint16_t m_peerPort; //!< Remote peer port
   EventId m_sendEvent; //!< Event to send the next packet
+
 
   /// Callbacks for tracing the packet Tx events
   TracedCallback<Ptr<const Packet> > m_txTrace;

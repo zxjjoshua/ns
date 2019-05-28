@@ -92,6 +92,7 @@ UdpEchoClient::UdpEchoClient ()
   m_sendEvent = EventId ();
   m_data = 0;
   m_dataSize = 0;
+  is_could=false;
 }
 
 UdpEchoClient::~UdpEchoClient()
@@ -507,6 +508,10 @@ void UdpEchoClient::Sendto(Ptr<Packet> packet, Address to){
   TypeId tid = TypeId::LookupByName ("ns3::UdpSocketFactory");
   Ptr<Socket> socket= Socket::CreateSocket (GetNode (), tid);
   socket->SendTo(packet, 0, to);
+}
+
+void UdpEchoClient::SetCloud(bool k){
+  is_could=k;
 }
 
 

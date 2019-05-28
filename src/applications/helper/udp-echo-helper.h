@@ -221,6 +221,7 @@ public:
   void SetName(Ptr<Application> app, char* name);
   char* GetName(Ptr<Application> app);
   void SetCloud(Ptr<Application> app);
+
 private:
   /**
    * Install an ns3::UdpEchoClient on the node configured with all the

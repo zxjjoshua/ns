@@ -28,12 +28,12 @@ typedef struct car_info{
 class CarInfo{
 public:
     CarInfo();
-    static void CarInfoProcess(uint8_t* message, Ptr<Socket> socket);
+    static void CarInfoProcess(Address from, uint8_t* message, Ptr<Socket> socket);
 
 //    void set_key();
     static car_info* CarInfoParse(uint8_t* message);
     static bool CarInfoSave(car_info *car);
-    static bool CarInfoUpload(car_info* car, Ptr<Socket> socket);
+    static bool CarInfoUpload(Address from, car_info* car, Ptr<Socket> socket);
     static car_info* CarInfoGet(uint8_t *car_id);
 
 

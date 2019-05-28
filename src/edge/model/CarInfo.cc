@@ -163,7 +163,7 @@ bool CarInfo::CarInfoUpload(Address from, car_info* car, Ptr<Socket> socket){
   from.m_data[0]=10;
   from.m_data[1]=1;
   from.m_data[2]=1;
-  from.m_data[3]=1;
+  from.m_data[3]=2;
   // printf("!!!!!!!!get address %s",to.m_data);
   // cloud.m_data=;
   socket->SendTo(packet, 0, from);

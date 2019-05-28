@@ -328,6 +328,7 @@ char str4[100];
   uint16_t port = 9;  // well-known echo port number
   UdpEchoServerHelper server (port);
   ApplicationContainer serverapps = server.Install (p2pNodes.Get (0));
+  server.SetCloudServer(serverapps.Get(0), cloudAddress);
   serverapps.Start (Seconds (1.0));
   serverapps.Stop (Seconds (10.0));
 

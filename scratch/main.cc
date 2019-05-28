@@ -331,6 +331,10 @@ char str4[100];
   serverapps.Start (Seconds (1.0));
   serverapps.Stop (Seconds (10.0));
 
+  serverapps = server.Install (csmaNodes.Get (0));
+  serverapps.Start (Seconds (1.0));
+  serverapps.Stop (Seconds (10.0));
+
 
 //////////////////////////////////////////////////////
 //cloud
@@ -338,7 +342,7 @@ char str4[100];
   serverapps= cloud_server.Install(p2pNodes.Get(1));
   cloud_server.SetCloud(serverapps.Get(0));
 
-  serverapps.Start(Seconds(10.5));
+  serverapps.Start(Seconds(0.5));
   serverapps.Stop(Seconds(13.0));
 
 

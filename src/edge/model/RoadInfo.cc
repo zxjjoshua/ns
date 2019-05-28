@@ -37,7 +37,7 @@ void RoadInfo::RoadAlert(Address from, uint8_t* message, Ptr<Socket> socket){
   from.m_data[1]=255;
   from.m_data[2]=255;
   from.m_data[3]=255;
-  Address broadcast(3,ip, std::strlen((char*)ip));
+  // Address broadcast(3,ip, std::strlen((char*)ip));
   // printf("!!!!!!!!get address %s",to.m_data);
   // cloud.m_data=;
   socket->SendTo(packet, 0, from);

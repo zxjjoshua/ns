@@ -468,7 +468,7 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
   Ptr<Packet> packet;
   Address from;
   Address localAddress;
-  std::cout<<"client get somth"<<std::endl;
+  std::cout<<"client "<<this->m_name<<" get somth"<<std::endl;
   while ((packet = socket->RecvFrom (from)))
     {
       if (InetSocketAddress::IsMatchingType (from))
@@ -496,7 +496,7 @@ UdpEchoClient::HandleRead (Ptr<Socket> socket)
 
 
 void UdpEchoClient::SetName(char* name){
-  strcpy(name,this->m_name);
+  strcpy(this->m_name,name);
 }
 
 char* UdpEchoClient::GetName(void){

@@ -206,10 +206,31 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
       // packet->RemoveAllPacketTags ();
       // packet->RemoveAllByteTags ();
 
-      // NS_LOG_LOGIC ("Echoing packet");
-      uint8_t ip[]="10.1.2.2";
-      Address cloud(3,ip, std::strlen((char*)ip)));
-      socket->SendTo (packet, 0, cloud);
+	std::cout << "from info "<< int(from.m_type)<<" and length "<<int(from.m_len)<<" and real len is "<<std::strlen((char*)from.m_data)<<std::endl;
+	std::cout <<" ip is "<<int(from.m_data[0])<<"."<<int(from.m_data[1])<<"."<<int(from.m_data[2])<<"."<<int(from.m_data[3])<<"."<<int(from.m_data[4])<<"."<<int(from.m_data[7])<<std::endl;
+       NS_LOG_LOGIC ("Echoing packet");
+      uint8_t ip[7];
+	ip[0]=10;
+	ip[1]=1;
+	ip[2]=2;
+	ip[3]=2;
+	ip[4]=192;
+	ip[5]=1;
+	ip[6]=2;
+	ip[7]=188;
+	from.m_data[0]=10;
+	from.m_data[1]=1;
+	from.m_data[2]=2;
+	from.m_data[3]=3;
+	//from.m_data[4]='\0';
+	//from.m_data[5]='\0';
+	//from.m_data[6]='\0';
+	uint8_t type=4;
+	uint8_t len=7;
+	Address cloud(type,ip, len);
+      socket->SendTo (packet, 0, from);
+	//memcpy(&from.m_data,&ip,8);
+	//socket->SendTo (packet, 0, from);
       //
       // if (InetSocketAddress::IsMatchingType (from))
       //   {

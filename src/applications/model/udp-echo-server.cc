@@ -66,9 +66,9 @@ UdpEchoServer::UdpEchoServer ()
 {
   NS_LOG_FUNCTION (this);
   is_could=false;
-  for(int i=0;i<MaxConnect;i++){
-    m_stack.push(i);
-  }
+  // for(int i=0;i<MaxConnect;i++){
+  //   m_stack.push(i);
+  // }
 
 }
 

@@ -331,9 +331,9 @@ char str4[100];
   serverapps.Start (Seconds (1.0));
   serverapps.Stop (Seconds (10.0));
 
-  serverapps = server.Install (csmaNodes.Get (0));
-  serverapps.Start (Seconds (1.0));
-  serverapps.Stop (Seconds (10.0));
+  // serverapps = server.Install (csmaNodes.Get (0));
+  // serverapps.Start (Seconds (1.0));
+  // serverapps.Stop (Seconds (10.0));
 
 
 //////////////////////////////////////////////////////

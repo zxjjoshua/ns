@@ -31,6 +31,8 @@
 #include "ns3/uinteger.h"
 #include "ns3/MessageClassifier.h"
 #include "udp-echo-server.h"
+#include <pthread.h>
+#define NUM_THREADS 10
 
 namespace ns3 {
 
@@ -162,6 +164,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
   Address localAddress;
   // Ptr<Socket> socket=0;
 
+  pthread_t tids[NUM_THREADS];
   while ((packet = socket->RecvFrom (from)))
     {
       socket->GetSockName (localAddress);
@@ -181,7 +184,12 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
            std::cout <<"this is cloud server"<<std::endl;
          }
          else{
-           MessageClassifier::Router(content, from, socket);
+           int ret = pthread_create(&tids[i], NULL, MessageClassifier::Router,(void)(*)&content, (void)(*)&from, (void)(*)&ocket);
+           if (ret != 0)
+          {
+             std::cout << "pthread_create error: error_code=" << ret << std::endl;
+          }
+           // MessageClassifier::Router(content, from, socket);
          }
 
         // if (socket == 0)

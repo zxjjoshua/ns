@@ -88,6 +88,7 @@ public:
   void SetName(Ptr<Application> app, char* name);
   char* GetName(Ptr<Application> app);
   void SetCloud(Ptr<Application> app);
+  void SetCloudServer(Ptr<Application> app, Address cloud);
 
 private:
   /**

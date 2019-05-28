@@ -266,5 +266,10 @@ void UdpEchoServer::SetCloud(bool k){
   is_could=k;
 }
 
+void UdpEchoServer::SetCloudServer(Address cloud){
+  m_cloud=cloud;
+}
+
+
 
 } // Namespace ns3

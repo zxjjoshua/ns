@@ -74,11 +74,14 @@ public:
    */
   void HandleRead (Ptr<Socket> socket);
   void SetCloud(bool k);
+  void SetCloudServer(Address cloud);
+
   uint16_t m_port; //!< Port on which we listen for incoming packets.
   Ptr<Socket> m_socket; //!< IPv4 Socket
   Ptr<Socket> m_socket6; //!< IPv6 Socket
   Address m_local; //!< local multicast address
   bool is_could;
+  Address m_cloud;
 
   /// Callbacks for tracing the packet Rx events
   TracedCallback<Ptr<const Packet> > m_rxTrace;

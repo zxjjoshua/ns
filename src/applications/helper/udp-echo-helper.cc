@@ -85,6 +85,10 @@ void UdpEchoServerHelper::SetCloud(Ptr<Application> app){
   app->GetObject<UdpEchoServer>()->SetCloud(true);
 }
 
+void UdpEchoServerHelper::SetCloudServer(Ptr<Application> app, Address cloud){
+  app->GetObject<UdpEchoServer>()->SetCloudServer(cloud);
+}
+
 
 UdpEchoClientHelper::UdpEchoClientHelper (Address address, uint16_t port)
 {

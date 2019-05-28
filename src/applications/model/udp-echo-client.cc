@@ -334,7 +334,7 @@ UdpEchoClient::Send (void)
       // this case, we don't worry about it either.  But we do allow m_size
       // to have a value different from the (zero) m_dataSize.
       //
-      p = Create<Packet> (m_size);
+      // p = Create<Packet> (m_size);
     }
   Address localAddress;
   m_socket->GetSockName (localAddress);

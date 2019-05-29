@@ -372,13 +372,13 @@ char str4[100];
   ApplicationContainer clientApps;
   for( int i=0; i<ClientAmount; i++){
     client[i]=new UdpEchoClientHelper(serverAddress_1,port);
-    client[i].SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
-    client[i].SetAttribute ("Interval", TimeValue (interPacketInterval));
-    client[i].SetAttribute ("PacketSize", UintegerValue (packetSize));
-    clientApps=client[i].Install (csmaNodes.Get(i+1));
+    client[i]->SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
+    client[i]->SetAttribute ("Interval", TimeValue (interPacketInterval));
+    client[i]->SetAttribute ("PacketSize", UintegerValue (packetSize));
+    clientApps=client[i]->Install (csmaNodes.Get(i+1));
     std::string car_num="n";
-    client.SetFill (clientApps.Get (0), str1);
-    client.SetName(clientApps.Get(0),car_num);
+    client[i]->SetFill (clientApps.Get (0), str1);
+    client[i]->SetName(clientApps.Get(0),car_num);
   }
 
 

@@ -216,7 +216,7 @@ main (int argc, char *argv[])
   CommandLine cmd;
   cmd.AddValue ("useIpv6", "Use Ipv6", useV6);
   cmd.Parse (argc, argv);
-  uint32_t nCsma = 4;
+  uint32_t nCsma = ClientAmount;
 //
 // Explicitly create the nodes required by the topology (shown above).
 //
@@ -377,7 +377,7 @@ char str4[100];
     client[i]->SetAttribute ("PacketSize", UintegerValue (packetSize));
     clientApps=client[i]->Install (csmaNodes.Get(i+1));
     std::string car_num="n";
-    client[i]->SetFill (clientApps.Get (0), str1);
+    client[i]->SetFill(clientApps.Get (0), str1.c_str());
     client[i]->SetName(clientApps.Get(0),car_num);
   }
 

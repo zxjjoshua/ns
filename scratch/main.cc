@@ -360,7 +360,7 @@ char str4[100];
   uint32_t packetSize = 1024;
   uint32_t maxPacketCount = 6;
   Time interPacketInterval = Seconds (0.5);
-  UdpEchoClientHelper client (cloudAddress, port);
+  UdpEchoClientHelper client (serverAddress_1, port);
   client.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
   client.SetAttribute ("Interval", TimeValue (interPacketInterval));
   client.SetAttribute ("PacketSize", UintegerValue (packetSize));
@@ -377,7 +377,7 @@ char str4[100];
   //uint32_t packetSize = 1024;
   //uint32_t maxPacketCount = 6;
   //Time interPacketInterval = Seconds (0.5);
-  UdpEchoClientHelper client2 (cloudAddress, port);
+  UdpEchoClientHelper client2 (serverAddress_1, port);
   client2.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
   client2.SetAttribute ("Interval", TimeValue (interPacketInterval));
   client2.SetAttribute ("PacketSize", UintegerValue (packetSize));
@@ -391,7 +391,7 @@ char str4[100];
 
 ///////////////////////////////////////////////////
 
-  UdpEchoClientHelper client3 (cloudAddress, port);
+  UdpEchoClientHelper client3 (serverAddress_1, port);
   client3.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
   client3.SetAttribute ("Interval", TimeValue (interPacketInterval));
   client3.SetAttribute ("PacketSize", UintegerValue (packetSize));

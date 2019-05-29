@@ -13,7 +13,7 @@ void RoadInfo::RoadInfoProceess(Address from, uint8_t* message, Ptr<Socket> sock
     //std::cout <<"here here!!"<<std::endl;
     RoadInfoSave(road);
     RoadInfoUpload(from, message, socket);
-    std::cout <<"server oveer!!"<<std::endl;
+    // std::cout <<"server oveer!!"<<std::endl;
 }
 
 bool RoadInfo::RoadInfoSave(Road* car){

@@ -133,7 +133,7 @@ void Encourage::AddIp(uint8_t *message,uint8_t* ip, uint8_t *send_buff, int* len
     for(int i=0;i<4;i++){
         sscanf(ip_4_str[i].c_str(),"%d",&ip_4[i]);
         ip_4_c[i]=(uint8_t)(ip_4[i]);
-        std::cout<<ip_4_c[i]<<" and "<<((int)ip_4_c[i])<<std::endl;
+        // std::cout<<ip_4_c[i]<<" and "<<((int)ip_4_c[i])<<std::endl;
     }
 
 

@@ -41,7 +41,7 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
 
     // to.m_data=;
     memcpy( &MT, message, 1);
-    std::cout<<"this is MT "<<(int)(MT)<<std::endl;
+    // std::cout<<"this is MT "<<(int)(MT)<<std::endl;
     if(int(MT)<0){
         int BT=int(message[0]&0x7f);//第一位归零
         std::cout<<"this is BT "<<BT<<std::endl;

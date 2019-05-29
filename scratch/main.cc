@@ -360,48 +360,64 @@ char str4[100];
   uint32_t packetSize = 1024;
   uint32_t maxPacketCount = 1000;
   Time interPacketInterval = Seconds (0.5);
-  UdpEchoClientHelper client (serverAddress_1, port);
-  client.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
-  client.SetAttribute ("Interval", TimeValue (interPacketInterval));
-  client.SetAttribute ("PacketSize", UintegerValue (packetSize));
-  Packet::EnablePrinting();
+  // UdpEchoClientHelper client (serverAddress_1, port);
+  // client.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
+  // client.SetAttribute ("Interval", TimeValue (interPacketInterval));
+  // client.SetAttribute ("PacketSize", UintegerValue (packetSize));
+  // Packet::EnablePrinting();
 
 
-  ApplicationContainer clientApps = client.Install (csmaNodes.Get(1));
-  clientApps.Start (Seconds (2.0));
-  clientApps.Stop (Seconds (10.0));
-  client.SetFill (clientApps.Get (0), str1);
-  client.SetName(clientApps.Get(0),"n1");
+  UdpEchoClientHelper* client[ClientAmount];
+  ApplicationContainer clientApps;
+  for( int i=0; i<ClientAmount; i++){
+    client[i].SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
+    client[i].SetAttribute ("Interval", TimeValue (interPacketInterval));
+    client[i].SetAttribute ("PacketSize", UintegerValue (packetSize));
+    client[i]=new UdpEchoClientHelper(serverAddress_1,port);
+    clientApps=client[i].Install (csmaNodes.Get(i+1));
+    std::string car_num="n";
+    client.SetFill (clientApps.Get (0), str1);
+    client.SetName(clientApps.Get(0),car_num);
+  }
+
+
+  // ApplicationContainer clientApps = client.Install (csmaNodes.Get(1));
+  // clientApps.Start (Seconds (2.0));
+  // clientApps.Stop (Seconds (10.0));
+  // client.SetFill (clientApps.Get (0), str1);
+  // client.SetName(clientApps.Get(0),"n1");
 
 //////////////////////////////////////////////////
   //uint32_t packetSize = 1024;
   //uint32_t maxPacketCount = 6;
   //Time interPacketInterval = Seconds (0.5);
-  UdpEchoClientHelper client2 (serverAddress_1, port);
-  client2.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
-  client2.SetAttribute ("Interval", TimeValue (interPacketInterval));
-  client2.SetAttribute ("PacketSize", UintegerValue (packetSize));
-  Packet::EnablePrinting();
 
-  clientApps = client2.Install (csmaNodes.Get (2));
-  clientApps.Start (Seconds (2.20));
-  clientApps.Stop (Seconds (10.0));
-  client2.SetFill (clientApps.Get (0), str2);
-  client2.SetName(clientApps.Get(0),"n2");
+
+  // UdpEchoClientHelper client2 (serverAddress_1, port);
+  // client2.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
+  // client2.SetAttribute ("Interval", TimeValue (interPacketInterval));
+  // client2.SetAttribute ("PacketSize", UintegerValue (packetSize));
+  // Packet::EnablePrinting();
+  //
+  // clientApps = client2.Install (csmaNodes.Get (2));
+  // clientApps.Start (Seconds (2.20));
+  // clientApps.Stop (Seconds (10.0));
+  // client2.SetFill (clientApps.Get (0), str2);
+  // client2.SetName(clientApps.Get(0),"n2");
 
 ///////////////////////////////////////////////////
 
-  UdpEchoClientHelper client3 (serverAddress_1, port);
-  client3.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
-  client3.SetAttribute ("Interval", TimeValue (interPacketInterval));
-  client3.SetAttribute ("PacketSize", UintegerValue (packetSize));
-  Packet::EnablePrinting();
-
-  clientApps = client3.Install (csmaNodes.Get (3));
-  clientApps.Start (Seconds (2.50));
-  clientApps.Stop (Seconds (10.0));
-  client3.SetFill (clientApps.Get (0), str3);
-  client3.SetName(clientApps.Get(0),"n3");
+  // UdpEchoClientHelper client3 (serverAddress_1, port);
+  // client3.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
+  // client3.SetAttribute ("Interval", TimeValue (interPacketInterval));
+  // client3.SetAttribute ("PacketSize", UintegerValue (packetSize));
+  // Packet::EnablePrinting();
+  //
+  // clientApps = client3.Install (csmaNodes.Get (3));
+  // clientApps.Start (Seconds (2.50));
+  // clientApps.Stop (Seconds (10.0));
+  // client3.SetFill (clientApps.Get (0), str3);
+  // client3.SetName(clientApps.Get(0),"n3");
 
 //////////////////////////////////////////////////
 //#if 0

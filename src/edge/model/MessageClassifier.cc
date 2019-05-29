@@ -36,7 +36,7 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
     // p2pInterfaces = address.Assign (p2pDevices);
     uint8_t ip[]="10.1.1.2";
     Address to(3,ip, std::strlen((char*)ip));
-    printf("!!!!!!!!get address %s",to.m_data);
+    // printf("!!!!!!!!get address %s",to.m_data);
 
 
     // to.m_data=;

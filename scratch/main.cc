@@ -379,6 +379,9 @@ char str4[100];
     std::string car_num="n";
     client[i]->SetFill(clientApps.Get (0), str1);
     client[i]->SetName(clientApps.Get(0),car_num.c_str());
+
+    clientApps.Start (Seconds (2.50));
+    clientApps.Stop (Seconds (15.0));
   }
 
 

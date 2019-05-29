@@ -22,6 +22,7 @@ public:
     static void RoadInfoReply(uint8_t* car_ip, int car_port);//used to serve customers, if the cars reequest for road info, the send back.
     static void RoadAlert(Address from, uint8_t* message, Ptr<Socket> socket);
     static void AlertParse(uint8_t* message);
+    static void RoadRequest(void);
 private:
     static Road* RoadInfoParse(uint8_t* message);
     static bool RoadInfoSave(Road* car);

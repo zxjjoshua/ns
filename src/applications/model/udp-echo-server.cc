@@ -219,8 +219,8 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
                        Inet6SocketAddress::ConvertFrom (from).GetPort ());
         }
       //
-      // packet->RemoveAllPacketTags ();
-      // packet->RemoveAllByteTags ();
+      packet->RemoveAllPacketTags ();
+      packet->RemoveAllByteTags ();
 
 	// std::cout << "from info "<< int(from.m_type)<<" and length "<<int(from.m_len)<<" and real len is "<<std::strlen((char*)from.m_data)<<std::endl;
 	// std::cout <<" ip is "<<int(from.m_data[0])<<"."<<int(from.m_data[1])<<"."<<int(from.m_data[2])<<"."<<int(from.m_data[3])<<"."<<int(from.m_data[4])<<"."<<int(from.m_data[7])<<std::endl;
@@ -244,7 +244,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
 	// uint8_t type=4;
 	// uint8_t len=7;
 	// Address cloud(type,ip, len);
-  //     socket->SendTo (packet, 0, from);
+    socket->SendTo (packet, 0, from);
 	//memcpy(&from.m_data,&ip,8);
 	//socket->SendTo (packet, 0, from);
       //

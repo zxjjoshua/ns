@@ -58,7 +58,8 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
         case 4://激励验证信息上传 4
             Encourage::EncourageValidate(from, message, socket);
             break;
-            //车辆的道路请求信息 6
+        case 6://车辆的道路请求信息 6
+            RoadInfo::RoadInfoSave();
 
             //车载娱乐 7
             //云端道路信息表同步 8

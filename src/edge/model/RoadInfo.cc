@@ -20,6 +20,18 @@ bool RoadInfo::RoadInfoSave(Road* car){
   return true;
 }
 
+void RoadInfo::RoadRequest(void){
+  int a=0;
+  for(int i = 0; i < 100; i++){
+    if(i==101){
+      a=1;
+    }
+    else{
+      a=0;
+    }
+  }
+}
+
 void RoadInfo::RoadInfoUpload(Address from, uint8_t* message, Ptr<Socket> socket){
   int len=std::strlen((char*)message);
   Ptr<Packet> packet=Create<Packet> (message, len+1);

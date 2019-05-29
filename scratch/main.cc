@@ -37,6 +37,7 @@
 #include "ns3/point-to-point-module.h"
 #include "ns3/ipv4-global-routing-helper.h"
 #include <time.h>
+#define ClientAmount 10
 //#include <hiredis/hiredis.h>
 //#include "ns3/DataBase.h"
 

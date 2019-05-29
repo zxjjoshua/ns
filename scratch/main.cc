@@ -359,7 +359,7 @@ char str4[100];
 //
   uint32_t packetSize = 1024;
   uint32_t maxPacketCount = 1000;
-  Time interPacketInterval = Seconds (1);
+  Time interPacketInterval = Seconds (0.5);
   UdpEchoClientHelper client (serverAddress_1, port);
   client.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
   client.SetAttribute ("Interval", TimeValue (interPacketInterval));

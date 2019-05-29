@@ -378,7 +378,7 @@ SetRoadInfo(str1, 1, 1.23, 3.34, 2.34, 5.34, true);
     clientApps=client[i]->Install (csmaNodes.Get(i+1));
     std::string car_num="n";
     client[i]->SetFill(clientApps.Get (0), str1);
-    client[i]->SetName(clientApps.Get(0),'car_num.c_str()');
+    client[i]->SetName(clientApps.Get(0),"n1");
 
     clientApps.Start (Seconds (2.50));
     clientApps.Stop (Seconds (15.0));

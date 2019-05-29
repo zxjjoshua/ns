@@ -339,13 +339,14 @@ char str4[100];
 
 //////////////////////////////////////////////////////
 //cloud
-  UdpEchoClientHelper cloud_server (serverAddress_1, port);
+  // UdpEchoClientHelper cloud_server (serverAddress_1, port);
+  UdpEchoServerHelper cloud_server (port);
   serverapps= cloud_server.Install(p2pNodes.Get(1));
   cloud_server.SetCloud(serverapps.Get(0));
-  cloud_server.SetAttribute ("MaxPackets", UintegerValue (0));
-  cloud_server.SetAttribute ("Interval", TimeValue (Seconds (10)));
-  cloud_server.SetAttribute ("PacketSize", UintegerValue (1));
-  cloud_server.SetName(serverapps.Get(0),"cloud");
+  // cloud_server.SetAttribute ("MaxPackets", UintegerValue (0));
+  // cloud_server.SetAttribute ("Interval", TimeValue (Seconds (10)));
+  // cloud_server.SetAttribute ("PacketSize", UintegerValue (1));
+  // cloud_server.SetName(serverapps.Get(0),"cloud");
 
   serverapps.Start(Seconds(2));
   serverapps.Stop(Seconds(10.0));

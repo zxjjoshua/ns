@@ -37,7 +37,7 @@
 #include "ns3/point-to-point-module.h"
 #include "ns3/ipv4-global-routing-helper.h"
 #include <time.h>
-#define ClientAmount 10
+#define ClientAmount 3
 //#include <hiredis/hiredis.h>
 //#include "ns3/DataBase.h"
 
@@ -301,12 +301,12 @@ char str3[100];
 char str4[100];
 
 
- SetCarInfo(str1, 1, 30, 23.23, 43.232);
+ //SetCarInfo(str1, 1, 30, 23.23, 43.232);
  SetCarInfo(str2, 2, 40, 233.23, 3.232);
  SetCarInfo(str3, 3, 40, 43.2, 34.232);
  SetCarInfo(str4, 4, 30, 11.53, 23.232);
 
-//SetRoadInfo(str1, 1, 1.23, 3.34, 2.34, 5.34, true);
+SetRoadInfo(str1, 1, 1.23, 3.34, 2.34, 5.34, true);
 //SetRoadInfo(str2, 2, 32.32, 33.22, 4.34, 45.6, true);
 //SetRoadInfo(str3, 3, 23.1, 23.44, 13.234, 443.2, true);
 //SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
@@ -378,7 +378,7 @@ char str4[100];
     clientApps=client[i]->Install (csmaNodes.Get(i+1));
     std::string car_num="n";
     client[i]->SetFill(clientApps.Get (0), str1);
-    client[i]->SetName(clientApps.Get(0),car_num.c_str());
+    client[i]->SetName(clientApps.Get(0),'car_num.c_str()');
 
     clientApps.Start (Seconds (2.50));
     clientApps.Stop (Seconds (15.0));

@@ -190,6 +190,27 @@ void SetValidateSuccInfo(char* str, bool succ, uint8_t* ip)
 }
 
 
+void SetRoadInfoRequest(char* str, float position_x, float position_y)
+  {
+    int len=0;
+    char MT_BT=128+6;
+    int ML=5;
+    // char car_id=33;
+    // short int speed=99;
+    // float position_x=233.234;
+    // float position_y=32.2216;
+    memcpy(&str[len],&MT_BT,1);
+    len++;
+    memcpy(&str[len],&ML,4);
+    len+=4;
+    memcpy(&str[len],&position_x,4);
+    len+=4;
+    memcpy(&str[len],&position_y,4);
+    len+=4;
+
+}
+
+
 int
 main (int argc, char *argv[])
 {
@@ -306,12 +327,12 @@ char str4[100];
  SetCarInfo(str3, 3, 40, 43.2, 34.232);
  SetCarInfo(str4, 4, 30, 11.53, 23.232);
 
-SetRoadInfo(str1, 1, 1.23, 3.34, 2.34, 5.34, true);
+// SetRoadInfo(str1, 1, 1.23, 3.34, 2.34, 5.34, true);
 //SetRoadInfo(str2, 2, 32.32, 33.22, 4.34, 45.6, true);
 //SetRoadInfo(str3, 3, 23.1, 23.44, 13.234, 443.2, true);
 //SetRoadInfo(str4, 4, 32.4, 45.65,4.44, 423.4, true);
 
-
+SetRoadInfo(str1, 23.433, 221.21);
 
 
 

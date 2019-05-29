@@ -377,8 +377,8 @@ char str4[100];
     client[i]->SetAttribute ("PacketSize", UintegerValue (packetSize));
     clientApps=client[i]->Install (csmaNodes.Get(i+1));
     std::string car_num="n";
-    client[i]->SetFill(clientApps.Get (0), str1.c_str());
-    client[i]->SetName(clientApps.Get(0),car_num);
+    client[i]->SetFill(clientApps.Get (0), str1);
+    client[i]->SetName(clientApps.Get(0),car_num.c_str());
   }
 
 

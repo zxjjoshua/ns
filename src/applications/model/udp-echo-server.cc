@@ -176,7 +176,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
       socket->GetSockName (localAddress);
       m_rxTrace (packet);
       m_rxTraceWithAddresses (packet, from, localAddress);
-	 std::cout <<"in the while head"<<std::endl;
+	 // std::cout <<"in the while head"<<std::endl;
       if (InetSocketAddress::IsMatchingType (from))
         {
           NS_LOG_INFO ("At time " << Simulator::Now ().GetSeconds () << "s server received " << packet->GetSize () << " bytes from " <<
@@ -222,9 +222,9 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
       // packet->RemoveAllPacketTags ();
       // packet->RemoveAllByteTags ();
 
-	std::cout << "from info "<< int(from.m_type)<<" and length "<<int(from.m_len)<<" and real len is "<<std::strlen((char*)from.m_data)<<std::endl;
-	std::cout <<" ip is "<<int(from.m_data[0])<<"."<<int(from.m_data[1])<<"."<<int(from.m_data[2])<<"."<<int(from.m_data[3])<<"."<<int(from.m_data[4])<<"."<<int(from.m_data[7])<<std::endl;
-       NS_LOG_LOGIC ("Echoing packet");
+	// std::cout << "from info "<< int(from.m_type)<<" and length "<<int(from.m_len)<<" and real len is "<<std::strlen((char*)from.m_data)<<std::endl;
+	// std::cout <<" ip is "<<int(from.m_data[0])<<"."<<int(from.m_data[1])<<"."<<int(from.m_data[2])<<"."<<int(from.m_data[3])<<"."<<int(from.m_data[4])<<"."<<int(from.m_data[7])<<std::endl;
+       // NS_LOG_LOGIC ("Echoing packet");
   //     uint8_t ip[7];
 	// ip[0]=10;
 	// ip[1]=1;

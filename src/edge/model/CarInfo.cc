@@ -46,7 +46,7 @@ car_info* CarInfo::CarInfoParse(uint8_t* message){
 
     memcpy(&MT_BT, &message[len++], 1);
     memcpy(&ML, &message[len], 4);
-    std::cout << int(MT_BT)<<" and messagee is "<<ML<< std::endl;
+    // std::cout << int(MT_BT)<<" and messagee is "<<ML<< std::endl;
     len+=4;
 
     memcpy(&car->car_id, &message[len], 2);
@@ -64,7 +64,7 @@ car_info* CarInfo::CarInfoParse(uint8_t* message){
     memcpy(&car->position_y, &message[len], 4);
 //    car->position_y=message[len];
     len+=4;
-    std::cout <<" and messagee is "<<car->position_x<< std::endl;
+    // std::cout <<" and messagee is "<<car->position_x<< std::endl;
     printf("%f\n",car->position_x);
 
     return car;

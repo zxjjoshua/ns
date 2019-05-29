@@ -60,7 +60,7 @@ void MessageClassifier::Router(uint8_t* message, Address from, Ptr<Socket> socke
             break;
         case 6://车辆的道路请求信息 6
             RoadInfo::RoadRequest();
-
+            break;
             //车载娱乐 7
             //云端道路信息表同步 8
 

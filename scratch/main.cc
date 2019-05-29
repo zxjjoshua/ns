@@ -358,8 +358,8 @@ char str4[100];
 // node one.
 //
   uint32_t packetSize = 1024;
-  uint32_t maxPacketCount = 6;
-  Time interPacketInterval = Seconds (0.5);
+  uint32_t maxPacketCount = 1000;
+  Time interPacketInterval = Seconds (1);
   UdpEchoClientHelper client (serverAddress_1, port);
   client.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
   client.SetAttribute ("Interval", TimeValue (interPacketInterval));
@@ -384,7 +384,7 @@ char str4[100];
   Packet::EnablePrinting();
 
   clientApps = client2.Install (csmaNodes.Get (2));
-  clientApps.Start (Seconds (2.0));
+  clientApps.Start (Seconds (2.20));
   clientApps.Stop (Seconds (10.0));
   client2.SetFill (clientApps.Get (0), str2);
   client2.SetName(clientApps.Get(0),"n2");
@@ -398,7 +398,7 @@ char str4[100];
   Packet::EnablePrinting();
 
   clientApps = client3.Install (csmaNodes.Get (3));
-  clientApps.Start (Seconds (2.0));
+  clientApps.Start (Seconds (2.50));
   clientApps.Stop (Seconds (10.0));
   client3.SetFill (clientApps.Get (0), str3);
   client3.SetName(clientApps.Get(0),"n3");

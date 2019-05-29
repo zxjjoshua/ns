@@ -340,7 +340,7 @@ char str4[100];
 //////////////////////////////////////////////////////
 //cloud
   UdpEchoClientHelper cloud_server (serverAddress_1, port);
-  serverapps= cloud_server.Install(csmaNodes.Get(nCsma));
+  serverapps= cloud_server.Install(p2pNodes.Get(1));
   cloud_server.SetCloud(serverapps.Get(0));
   cloud_server.SetAttribute ("MaxPackets", UintegerValue (0));
   cloud_server.SetAttribute ("Interval", TimeValue (Seconds (10)));
@@ -359,7 +359,7 @@ char str4[100];
   uint32_t packetSize = 1024;
   uint32_t maxPacketCount = 6;
   Time interPacketInterval = Seconds (0.5);
-  UdpEchoClientHelper client (serverAddress_1, port);
+  UdpEchoClientHelper client (cloudAddress, port);
   client.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
   client.SetAttribute ("Interval", TimeValue (interPacketInterval));
   client.SetAttribute ("PacketSize", UintegerValue (packetSize));
@@ -376,7 +376,7 @@ char str4[100];
   //uint32_t packetSize = 1024;
   //uint32_t maxPacketCount = 6;
   //Time interPacketInterval = Seconds (0.5);
-  UdpEchoClientHelper client2 (serverAddress_1, port);
+  UdpEchoClientHelper client2 (cloudAddress, port);
   client2.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
   client2.SetAttribute ("Interval", TimeValue (interPacketInterval));
   client2.SetAttribute ("PacketSize", UintegerValue (packetSize));
@@ -390,7 +390,7 @@ char str4[100];
 
 ///////////////////////////////////////////////////
 
-  UdpEchoClientHelper client3 (serverAddress_1, port);
+  UdpEchoClientHelper client3 (cloudAddress, port);
   client3.SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
   client3.SetAttribute ("Interval", TimeValue (interPacketInterval));
   client3.SetAttribute ("PacketSize", UintegerValue (packetSize));

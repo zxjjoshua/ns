@@ -370,10 +370,10 @@ char str4[100];
   UdpEchoClientHelper* client[ClientAmount];
   ApplicationContainer clientApps;
   for( int i=0; i<ClientAmount; i++){
+    client[i]=new UdpEchoClientHelper(serverAddress_1,port);
     client[i].SetAttribute ("MaxPackets", UintegerValue (maxPacketCount));
     client[i].SetAttribute ("Interval", TimeValue (interPacketInterval));
     client[i].SetAttribute ("PacketSize", UintegerValue (packetSize));
-    client[i]=new UdpEchoClientHelper(serverAddress_1,port);
     clientApps=client[i].Install (csmaNodes.Get(i+1));
     std::string car_num="n";
     client.SetFill (clientApps.Get (0), str1);

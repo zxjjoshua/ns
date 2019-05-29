@@ -185,7 +185,7 @@ UdpEchoServer::HandleRead (Ptr<Socket> socket)
     //NS_LOG_INFO("server reecieveed "<<packet->ToString());
     //packet->Output(packet->GetSize());
         uint8_t* content= packet->GetContent(packet->GetSize());
-        NS_LOG_INFO("this is what seerver get" <<content);
+        // NS_LOG_INFO("this is what seerver get" <<content);
 	       if(is_could){
            std::cout <<"this is cloud server"<<std::endl;
          }
